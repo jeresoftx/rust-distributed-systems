@@ -1,9 +1,10 @@
 # 03. Paxos
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
+> humana.
 
 ## Concepto
 
@@ -47,6 +48,35 @@ sin red real, hilos, disco ni timeouts físicos:
 El objetivo no es esconder Paxos detrás de una API cómoda. El objetivo es que el
 alumno vea por qué una promesa existe, qué obliga a adoptar un valor previo y
 cómo se decide por intersección de mayorías.
+
+## Implementación
+
+El módulo `src/paxos.rs` implementa una sola decisión Paxos con pasos
+deterministas:
+
+- solicitar promesas con `prepare`;
+- rechazar propuestas viejas;
+- reportar aceptaciones previas;
+- elegir un valor seguro con `safe_value`;
+- aceptar propuestas;
+- declarar un valor elegido por mayoría.
+
+Uso básico:
+
+```rust
+use rust_distributed_systems::paxos::{NodeId, PaxosRound, ProposalNumber};
+
+let mut round = PaxosRound::new([NodeId(1), NodeId(2), NodeId(3)]);
+let proposal = ProposalNumber(10);
+
+round.prepare(NodeId(1), NodeId(1), proposal)?;
+round.prepare(NodeId(1), NodeId(2), proposal)?;
+round.accept(NodeId(1), proposal, "valor-a")?;
+round.accept(NodeId(2), proposal, "valor-a")?;
+
+assert_eq!(round.chosen_value(), Some("valor-a"));
+# Ok::<(), rust_distributed_systems::paxos::PaxosError>(())
+```
 
 ## Invariantes
 
@@ -139,5 +169,6 @@ vuelve práctico.
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar un modelo Rust mínimo de Paxos que
-represente promesas, aceptaciones, valor seguro y decisión por quórum.
+El siguiente paso natural es agregar ejemplos progresivos y ejercicios para que
+la preparación, la aceptación y la adopción de valor previo se estudien con
+escenarios ejecutables.
