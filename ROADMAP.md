@@ -33,9 +33,10 @@ ejercicios, soluciones ejecutables y benchmark manual. Su estado visible es
 `benchmarked`: tiene medición educativa, pero todavía no se marca como
 `reviewed` ni `published` sin revisión humana.
 
-Elección de líder ya cuenta con especificación inicial, modelo Rust mínimo y
-tests de invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
-ejercicios, benchmark y revisión humana.
+Elección de líder ya cuenta con especificación inicial, modelo Rust mínimo,
+tests de invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables
+y diagrama Mermaid. Su estado visible es `tested`: todavía falta benchmark y
+revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -87,6 +88,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #18: escribir capítulo extendido, ejemplos progresivos y
-ejercicios de Elección de líder. Ese paso debe convertir el modelo probado en
-material de estudio guiado.
+Continuar con el issue #19: agregar benchmark educativo y cierre de capítulo de
+Elección de líder. Ese paso debe medir las operaciones principales sin marcar
+el capítulo como `reviewed` ni `published`.

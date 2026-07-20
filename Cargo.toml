@@ -61,6 +61,22 @@ path = "examples/soluciones/paxos_advanced_adopted_value.rs"
 name = "paxos_real_config_decision"
 path = "examples/soluciones/paxos_real_config_decision.rs"
 
+[[example]]
+name = "leader_election_basic_majority"
+path = "examples/soluciones/leader_election_basic_majority.rs"
+
+[[example]]
+name = "leader_election_intermediate_unavailable"
+path = "examples/soluciones/leader_election_intermediate_unavailable.rs"
+
+[[example]]
+name = "leader_election_advanced_double_vote"
+path = "examples/soluciones/leader_election_advanced_double_vote.rs"
+
+[[example]]
+name = "leader_election_real_failover"
+path = "examples/soluciones/leader_election_real_failover.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"

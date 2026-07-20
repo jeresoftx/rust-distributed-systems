@@ -3,8 +3,8 @@
 > **Estado:** tested.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
-> humana.
+> invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
+> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
 
 ## Concepto
 
@@ -28,6 +28,26 @@ Elección de líder responde preguntas prácticas:
 - cuántos votos bastan para reconocer liderazgo;
 - qué ocurre si un votante ya eligió a otro candidato;
 - cómo explicar por qué una elección ganó o falló.
+
+## Diagrama
+
+```mermaid
+sequenceDiagram
+    participant N1 as Nodo 1
+    participant N2 as Nodo 2
+    participant N3 as Nodo 3
+
+    N1->>N1: inicia elección T1
+    N1->>N2: solicita voto T1
+    N2->>N1: concede voto T1
+    Note over N1,N3: Dos de tres nodos forman mayoría
+    N1->>N1: se vuelve líder T1
+    N1--xN2: falla o partición observada
+    N2->>N2: inicia elección T2
+    N2->>N3: solicita voto T2
+    N3->>N2: concede voto T2
+    Note over N2,N3: Un término mayor vuelve obsoleto al líder anterior
+```
 
 ## Modelo educativo esperado
 
@@ -119,6 +139,45 @@ La elección de líder tiene precio:
 - fallas y recuperaciones agregan ruido operacional;
 - cambios frecuentes de líder pueden frenar el progreso.
 
+## Ejemplos progresivos
+
+### Básico
+
+`examples/soluciones/leader_election_basic_majority.rs` muestra la ruta mínima:
+tres nodos, un candidato, un voto adicional y una mayoría suficiente para
+elegir líder.
+
+La lección es que liderazgo no significa "empecé primero". Un candidato solo se
+convierte en líder cuando existe evidencia suficiente dentro del término.
+
+### Intermedio
+
+`examples/soluciones/leader_election_intermediate_unavailable.rs` muestra que un
+nodo no disponible no puede votar hasta recuperarse.
+
+La lección es que disponibilidad y seguridad se tensan entre sí. Ignorar nodos
+caídos aumenta progreso aparente, pero permitir que voten sin evidencia haría
+imposible explicar la elección.
+
+### Avanzado
+
+`examples/soluciones/leader_election_advanced_double_vote.rs` muestra que un
+votante no puede apoyar a dos candidatos distintos dentro del mismo término.
+
+La lección es central: el voto por término es memoria de seguridad. Sin esa
+memoria, dos candidatos podrían reunir mayorías aparentes sobre observaciones
+incompatibles.
+
+### Caso real
+
+`examples/soluciones/leader_election_real_failover.rs` interpreta la elección
+como relevo operativo: un líder queda no disponible y otro nodo gana liderazgo
+en un término mayor.
+
+Este caso conecta el modelo con coordinadores reales de clúster, control planes,
+scheduler primario, réplica primaria de una base de datos o cualquier servicio
+que necesita una autoridad temporal para avanzar.
+
 ## Modos de falla
 
 El capítulo debe cubrir, como mínimo:
@@ -145,14 +204,54 @@ Este capítulo no promete:
 Primero se aprende la autoridad temporal. Después se estudia cómo se combina
 con logs, locks, clocks y transacciones.
 
+## Ejercicios
+
+### Nivel 1: mayoría
+
+Crea una elección con tres nodos. Inicia una candidatura con `NodeId(1)`,
+concede un voto desde `NodeId(2)` y verifica que `NodeId(1)` queda como líder
+después de finalizar la elección.
+
+Solución sugerida:
+`examples/soluciones/leader_election_basic_majority.rs`.
+
+### Nivel 2: nodo no disponible
+
+Marca `NodeId(2)` como no disponible antes de votar. Verifica que el modelo
+devuelve `LeaderElectionError::NodeUnavailable`. Después recupera el nodo y
+confirma que puede votar.
+
+Solución sugerida:
+`examples/soluciones/leader_election_intermediate_unavailable.rs`.
+
+### Nivel 3: doble voto
+
+Haz que `NodeId(2)` vote por `NodeId(1)` en un término. Después intenta que el
+mismo nodo vote por `NodeId(3)` en el mismo término y verifica que el modelo
+devuelve `LeaderElectionError::AlreadyVoted`.
+
+Solución sugerida:
+`examples/soluciones/leader_election_advanced_double_vote.rs`.
+
+### Nivel 4: relevo de líder
+
+Elige líder a `NodeId(1)` en un clúster de cinco nodos. Marca ese líder como no
+disponible, inicia una nueva elección con `NodeId(2)` y verifica que el nuevo
+liderazgo ocurre en un término mayor.
+
+Solución sugerida:
+`examples/soluciones/leader_election_real_failover.rs`.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
 - `docs/00-convenciones-de-simulacion.md`
 - `docs/02-raft.md`
+- `diagrams/04-eleccion-de-lider.mmd`
 - `docs/superpowers/specs/2026-07-20-leader-election-specification.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar ejemplos progresivos y ejercicios para
-estudiar mayoría, doble voto, nodos no disponibles y liderazgo obsoleto.
+El siguiente paso natural es agregar un benchmark educativo para medir elección
+por mayoría, rechazo de doble voto, rechazo de término obsoleto y recuperación
+de nodo.

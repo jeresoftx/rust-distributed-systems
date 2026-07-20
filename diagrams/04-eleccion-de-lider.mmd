@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant N1 as Nodo 1
+    participant N2 as Nodo 2
+    participant N3 as Nodo 3
+
+    N1->>N1: inicia elección T1
+    N1->>N2: solicita voto T1
+    N2->>N1: concede voto T1
+    Note over N1,N3: Dos de tres nodos forman mayoría
+    N1->>N1: se vuelve líder T1
+    N1--xN2: falla o partición observada
+    N2->>N2: inicia elección T2
+    N2->>N3: solicita voto T2
+    N3->>N2: concede voto T2
+    Note over N2,N3: Un término mayor vuelve obsoleto al líder anterior
