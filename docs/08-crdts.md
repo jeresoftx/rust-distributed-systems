@@ -1,11 +1,11 @@
 # 08. CRDTs
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo, tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark, revisión humana ni está marcado
-> como `published`.
+> diagrama Mermaid y benchmark educativo manual. Todavía no tiene revisión
+> humana y no está marcado como `published`.
 
 ## Concepto
 
@@ -162,6 +162,32 @@ CRDTs tienen precio:
 - reglas no monotónicas pueden requerir coordinación;
 - compactar metadatos sin romper invariantes es difícil.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/crdt_bench.rs` y se ejecuta con:
+
+```bash
+cargo bench --bench crdt_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- incremento local;
+- fusión por máximo;
+- comparación parcial;
+- convergencia eventual.
+
+Este benchmark no intenta representar un sistema real de replicación. Usa
+`std::time::Instant`, `std::hint::black_box` y repeticiones simples para ligar
+cada operación con una invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, serialización ni almacenamiento;
+- no confundir esta medición educativa con benchmarking estadístico formal.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -276,9 +302,9 @@ Solución sugerida:
 - `docs/06-vector-clocks.md`
 - `docs/07-lamport-clocks.md`
 - `docs/superpowers/specs/2026-07-20-crdts-specification.md`
+- `docs/superpowers/specs/2026-07-20-crdts-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar el benchmark educativo de CRDTs y cerrar el
-estado del capítulo como `benchmarked`, sin marcarlo como `reviewed` ni
-`published` hasta que exista revisión humana.
+El siguiente paso natural es revisar CRDTs con criterio humano antes de decidir
+si se agregan correcciones o si el capítulo puede avanzar hacia publicación.

@@ -125,6 +125,22 @@ path = "examples/soluciones/lamport_clock_advanced_trace_order.rs"
 name = "lamport_clock_real_audit_trace"
 path = "examples/soluciones/lamport_clock_real_audit_trace.rs"
 
+[[example]]
+name = "crdt_basic_increment"
+path = "examples/soluciones/crdt_basic_increment.rs"
+
+[[example]]
+name = "crdt_intermediate_merge"
+path = "examples/soluciones/crdt_intermediate_merge.rs"
+
+[[example]]
+name = "crdt_advanced_convergence"
+path = "examples/soluciones/crdt_advanced_convergence.rs"
+
+[[example]]
+name = "crdt_real_reservation_metrics"
+path = "examples/soluciones/crdt_real_reservation_metrics.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
@@ -158,4 +174,9 @@ harness = false
 [[bench]]
 name = "lamport_clock_bench"
 path = "benches/lamport_clock_bench.rs"
+harness = false
+
+[[bench]]
+name = "crdt_bench"
+path = "benches/crdt_bench.rs"
 harness = false
