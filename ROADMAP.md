@@ -11,9 +11,27 @@ orienta el avance, pero no convierte el curso en una carrera por terminar.
 El repositorio acaba de nacer con su estructura inicial, licencias, README,
 AGENTS, crate Rust mínimo y tabla de capítulos planeados.
 
-Todavía no hay capítulos implementados ni publicados. El siguiente paso natural
-es convertir el alcance del curso en milestones e issues, antes de tocar código
-de curso, para que el checklist operativo viva en GitHub.
+El plan de trabajo ya vive en GitHub como milestones e issues. Cada paso queda
+asignado a `jeresoftx`, asociado al milestone correspondiente y etiquetado para
+mantener la regla del repositorio: un issue, un commit y un PR.
+
+Todavía no hay capítulos implementados ni publicados. El alcance operativo del
+curso queda trazado por el issue #1 y por la especificación
+`docs/superpowers/specs/2026-07-20-course-scope.md`.
+
+## Progresión del Semestre 4
+
+El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
+diseños de sistemas completos. La progresión esperada es:
+
+1. **Fundamentos de acuerdo y tiempo:** consenso, Raft, Paxos, elección de
+   líder, Lamport clocks y vector clocks.
+2. **Coordinación y consistencia:** locks distribuidos, CRDTs, teorema CAP y
+   transacciones distribuidas.
+3. **Distribución de estado:** consistent hashing y protocolo gossip.
+4. **Puente hacia System Design:** usar estos mecanismos como piezas explícitas
+   en diseños como Kafka, Redis distribuido, sistemas de reservas y servicios
+   replicados.
 
 ## Capítulos planeados
 
@@ -51,6 +69,6 @@ de curso, para que el checklist operativo viva en GitHub.
 
 ## Siguiente paso natural
 
-Crear milestones e issues para todo el plan del repositorio, asignarlos a
-`jeresoftx`, etiquetarlos y usarlos como checklist antes de iniciar la
-implementación capítulo por capítulo.
+Continuar con el issue #2: definir el glosario base de sistemas distribuidos.
+Ese glosario será el vocabulario común antes de escribir especificaciones de
+capítulos o código Rust de curso.
