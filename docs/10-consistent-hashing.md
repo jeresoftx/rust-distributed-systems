@@ -1,10 +1,10 @@
 # 10. Consistent hashing
 
-> **Estado:** draft.
+> **Estado:** implemented.
 >
-> El capítulo cuenta con especificación inicial e invariantes documentados.
-> Todavía no tiene modelo Rust, tests, ejemplos, ejercicios, benchmark, revisión
-> humana ni está marcado como `published`.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark, revisión humana
+> ni está marcado como `published`.
 
 ## Concepto
 
@@ -36,6 +36,13 @@ El modelo educativo debe hacer visibles estas reglas:
 - agregar un nodo solo mueve las claves del rango que ese nodo toma;
 - quitar un nodo solo mueve las claves que pertenecían al nodo retirado.
 
+## Implementación
+
+El módulo `src/consistent_hashing.rs` implementa un anillo determinista con
+`NodeId`, `Key`, `HashSlot`, `RingNode`, `ConsistentHashRing` y `KeyMovement`.
+El modelo usa posiciones explícitas para que el aprendizaje se concentre en el
+movimiento de claves, no en los detalles de una función hash concreta.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
@@ -45,5 +52,5 @@ El modelo educativo debe hacer visibles estas reglas:
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar el modelo Rust mínimo de Consistent
-hashing y sus tests de invariantes.
+El siguiente paso natural es escribir el capítulo completo con ejemplos
+progresivos, ejercicios, soluciones ejecutables y diagrama Mermaid.
