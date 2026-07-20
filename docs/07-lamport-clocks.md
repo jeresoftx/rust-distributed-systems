@@ -3,8 +3,8 @@
 > **Estado:** tested.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
-> humana.
+> invariantes, ejemplos progresivos y ejercicios. Todavía no tiene benchmark ni
+> revisión humana.
 
 ## Concepto
 
@@ -27,6 +27,20 @@ Lamport clocks responden preguntas prácticas:
 - cómo construir trazas distribuidas deterministas;
 - cuándo un contador lógico debe avanzar al observar otro nodo;
 - por qué un orden escalar no prueba causalidad completa.
+
+## Diagrama
+
+```mermaid
+sequenceDiagram
+    participant A as Nodo A
+    participant B as Nodo B
+
+    A->>A: evento local, reloj = 1
+    A->>B: envía mensaje con reloj = 2
+    Note over A,B: El envío incrementa antes de adjuntar timestamp
+    B->>B: recibe, max(0, 2) + 1 = 3
+    B->>B: evento local posterior, reloj = 4
+```
 
 ## Modelo educativo esperado
 
@@ -60,6 +74,25 @@ contador escalar por nodo. Su API expone una secuencia pequeña:
 
 El desempate de `EventId` permite ordenar salidas educativas de forma estable.
 Ese orden total es útil para trazas y pruebas, pero no agrega causalidad real.
+
+Uso básico:
+
+```rust
+use rust_distributed_systems::lamport_clock::{
+    EventId, LamportClock, LamportTimestamp, NodeId,
+};
+
+let mut sender = LamportClock::new(NodeId(1));
+sender.local_event();
+
+let message = sender.send();
+let mut receiver = LamportClock::new(NodeId(2));
+let received = receiver.receive(message);
+
+assert_eq!(message.timestamp, LamportTimestamp(2));
+assert_eq!(received, EventId::new(LamportTimestamp(3), NodeId(2)));
+assert!(message.timestamp < received.timestamp);
+```
 
 ## Invariantes
 
@@ -108,6 +141,41 @@ Lamport clocks tienen precio:
 - reinicios sin persistencia pueden romper monotonía;
 - depurar causalidad fina requiere volver a vector clocks u otro metadato.
 
+## Ejemplos progresivos
+
+### Básico
+
+`examples/soluciones/lamport_clock_basic_local_event.rs` muestra la ruta mínima:
+un nodo crea un reloj en cero y registra dos eventos locales.
+
+La lección es que el tiempo lógico avanza por eventos observados, no por
+segundos.
+
+### Intermedio
+
+`examples/soluciones/lamport_clock_intermediate_send_receive.rs` muestra un
+nodo que envía un mensaje y otro que lo recibe con `max(local, remoto) + 1`.
+
+La lección es que recibir un mensaje debe colocar al receptor después del envío
+observado.
+
+### Avanzado
+
+`examples/soluciones/lamport_clock_advanced_trace_order.rs` construye una traza
+con eventos de dos nodos y la ordena por `EventId`.
+
+La lección es que el orden total estable sirve para narrar y probar escenarios,
+pero el desempate por nodo no prueba causalidad.
+
+### Caso real
+
+`examples/soluciones/lamport_clock_real_audit_trace.rs` interpreta eventos de
+checkout, pago y reservación como una auditoría distribuida. Cada servicio
+produce o recibe eventos y la traza final se ordena por timestamp lógico.
+
+Este caso conecta el modelo con bitácoras distribuidas, trazabilidad de
+operaciones, debugging de incidentes y explicación de flujos multi-servicio.
+
 ## Modos de falla
 
 El capítulo debe cubrir, como mínimo:
@@ -136,6 +204,44 @@ Primero se aprende orden lógico compacto. Después se estudia cuándo ese orden
 alcanza, cuándo necesita desempate y cuándo debe reemplazarse por evidencia
 causal más rica.
 
+## Ejercicios
+
+### Nivel 1: evento local
+
+Crea un `LamportClock` para `NodeId(1)`. Registra dos eventos locales y verifica
+que produzcan `LamportTimestamp(1)` y `LamportTimestamp(2)`.
+
+Solución sugerida:
+`examples/soluciones/lamport_clock_basic_local_event.rs`.
+
+### Nivel 2: envío y recepción
+
+Haz que un nodo emisor registre un evento local y después envíe un mensaje.
+Recibe ese mensaje en otro nodo y verifica que el evento de recepción tenga
+timestamp `max(local, remoto) + 1`.
+
+Solución sugerida:
+`examples/soluciones/lamport_clock_intermediate_send_receive.rs`.
+
+### Nivel 3: traza ordenada
+
+Construye eventos concurrentes en dos nodos y un mensaje posterior entre ellos.
+Ordena los eventos por `EventId` y explica cuáles relaciones son causales y
+cuáles solo existen por desempate.
+
+Solución sugerida:
+`examples/soluciones/lamport_clock_advanced_trace_order.rs`.
+
+### Nivel 4: auditoría distribuida
+
+Modela un flujo de checkout, pago y reservación. Cada servicio debe tener su
+propio `LamportClock`; los mensajes entre servicios deben transportar el
+timestamp lógico. Ordena la auditoría final y explica por qué esa traza no
+depende de relojes físicos.
+
+Solución sugerida:
+`examples/soluciones/lamport_clock_real_audit_trace.rs`.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
@@ -147,6 +253,5 @@ causal más rica.
 
 ## Siguiente paso
 
-El siguiente paso natural es escribir ejemplos progresivos, ejercicios y
-soluciones ejecutables para conectar el modelo con eventos locales, mensajes,
-recepciones atrasadas y ordenamiento de trazas.
+El siguiente paso natural es agregar el benchmark educativo del capítulo para
+medir evento local, envío, recepción y ordenamiento de trazas.

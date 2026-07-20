@@ -109,6 +109,22 @@ path = "examples/soluciones/vector_clock_advanced_concurrent_updates.rs"
 name = "vector_clock_real_profile_conflict"
 path = "examples/soluciones/vector_clock_real_profile_conflict.rs"
 
+[[example]]
+name = "lamport_clock_basic_local_event"
+path = "examples/soluciones/lamport_clock_basic_local_event.rs"
+
+[[example]]
+name = "lamport_clock_intermediate_send_receive"
+path = "examples/soluciones/lamport_clock_intermediate_send_receive.rs"
+
+[[example]]
+name = "lamport_clock_advanced_trace_order"
+path = "examples/soluciones/lamport_clock_advanced_trace_order.rs"
+
+[[example]]
+name = "lamport_clock_real_audit_trace"
+path = "examples/soluciones/lamport_clock_real_audit_trace.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
