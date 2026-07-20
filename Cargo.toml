@@ -133,3 +133,8 @@ harness = false
 name = "distributed_locks_bench"
 path = "benches/distributed_locks_bench.rs"
 harness = false
+
+[[bench]]
+name = "vector_clock_bench"
+path = "benches/vector_clock_bench.rs"
+harness = false

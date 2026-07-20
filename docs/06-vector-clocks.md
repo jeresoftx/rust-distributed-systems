@@ -1,10 +1,11 @@
 # 06. Vector clocks
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes, ejemplos progresivos y ejercicios. Todavía no tiene benchmark ni
-> revisión humana.
+> invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables,
+> diagrama Mermaid y benchmark educativo manual. Todavía no tiene revisión
+> humana y no está marcado como `published`.
 
 ## Concepto
 
@@ -147,6 +148,33 @@ Vector clocks tienen precio:
 - nodos dinámicos complican poda y compactación;
 - detectar concurrencia no resuelve el conflicto automáticamente.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/vector_clock_bench.rs` y se ejecuta
+con:
+
+```bash
+cargo bench --bench vector_clock_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- incremento local;
+- fusión por máximo;
+- comparación causal;
+- detección de concurrencia.
+
+Este benchmark no intenta representar un sistema real de replicación. Usa
+`std::time::Instant`, `std::hint::black_box` y repeticiones simples para ligar
+cada operación con una invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, serialización ni almacenamiento;
+- no confundir esta medición educativa con benchmarking estadístico formal.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -259,8 +287,10 @@ Solución sugerida:
 - `docs/04-eleccion-de-lider.md`
 - `docs/05-locks-distribuidos.md`
 - `docs/superpowers/specs/2026-07-20-vector-clocks-specification.md`
+- `docs/superpowers/specs/2026-07-20-vector-clocks-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar el benchmark educativo del capítulo para
-medir incremento, fusión, comparación causal y detección de concurrencia.
+El siguiente paso natural es revisar Vector clocks con criterio humano antes de
+decidir si se agregan correcciones o si el capítulo puede avanzar hacia
+publicación.

@@ -46,8 +46,10 @@ visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
 Vector clocks ya cuenta con especificación inicial, modelo Rust mínimo, tests
-de invariantes, ejemplos progresivos y ejercicios. Su estado visible es
-`tested`: todavía falta benchmark educativo.
+de invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
+diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
+visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
+como `reviewed` ni `published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -72,7 +74,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 03 | Paxos | benchmarked |
 | 04 | Elección de líder | benchmarked |
 | 05 | Locks distribuidos | benchmarked |
-| 06 | Vector clocks | tested |
+| 06 | Vector clocks | benchmarked |
 | 07 | Lamport clocks | planned |
 | 08 | CRDTs | planned |
 | 09 | Teorema CAP | planned |
@@ -99,6 +101,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #27: agregar benchmarks y cierre de estado de Vector
-clocks. Ese paso debe medir incremento, fusión, comparación causal y detección
-de concurrencia.
+Continuar con el issue #28: definir especificación e invariantes de Lamport
+clocks. Ese paso debe explicar relojes lógicos escalares, orden parcial
+observable y límites frente a Vector clocks.
