@@ -1,9 +1,10 @@
 # 04. Elección de líder
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
+> humana.
 
 ## Concepto
 
@@ -45,6 +46,33 @@ El modelo de este curso debe representar una elección determinista por mayoría
 El objetivo no es construir Raft otra vez. El objetivo es aislar la idea de
 autoridad temporal para entender qué significa "este nodo puede coordinar
 ahora" sin esconder las fallas.
+
+## Implementación
+
+El módulo `src/leader_election.rs` implementa una elección determinista por
+mayoría. Su API expone una secuencia pequeña:
+
+- iniciar elección;
+- conceder votos;
+- finalizar elección cuando hay quórum;
+- marcar nodos no disponibles;
+- recuperar nodos;
+- consultar líder, rol e historial.
+
+Uso básico:
+
+```rust
+use rust_distributed_systems::leader_election::{LeaderElection, NodeId};
+
+let mut election = LeaderElection::new([NodeId(1), NodeId(2), NodeId(3)]);
+
+let term = election.start_election(NodeId(1))?;
+election.grant_vote(NodeId(2), NodeId(1), term)?;
+election.finish_election(NodeId(1))?;
+
+assert_eq!(election.leader(), Some(NodeId(1)));
+# Ok::<(), rust_distributed_systems::leader_election::LeaderElectionError>(())
+```
 
 ## Invariantes
 
@@ -126,5 +154,5 @@ con logs, locks, clocks y transacciones.
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar un modelo Rust mínimo de elección de
-líder con términos, votos, disponibilidad y quórum mayoritario.
+El siguiente paso natural es agregar ejemplos progresivos y ejercicios para
+estudiar mayoría, doble voto, nodos no disponibles y liderazgo obsoleto.
