@@ -1,9 +1,10 @@
 # 07. Lamport clocks
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
+> humana.
 
 ## Concepto
 
@@ -44,6 +45,21 @@ El modelo de este curso debe representar relojes lógicos escalares:
 El objetivo no es simular una red ni construir un sistema de trazas completo. El
 objetivo es aprender la promesa exacta de Lamport: si A causó B, entonces el
 timestamp de A es menor que el timestamp de B. El inverso no se promete.
+
+## Implementación
+
+El módulo `src/lamport_clock.rs` implementa un reloj Lamport determinista con un
+contador escalar por nodo. Su API expone una secuencia pequeña:
+
+- crear un reloj en cero para un nodo;
+- consultar nodo y timestamp actual;
+- registrar evento local;
+- enviar mensaje con timestamp adjunto;
+- recibir mensaje con `max(local, remoto) + 1`;
+- ordenar eventos mediante `EventId`, compuesto por timestamp y nodo.
+
+El desempate de `EventId` permite ordenar salidas educativas de forma estable.
+Ese orden total es útil para trazas y pruebas, pero no agrega causalidad real.
 
 ## Invariantes
 
@@ -131,5 +147,6 @@ causal más rica.
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar un modelo Rust mínimo de Lamport
-clocks con evento local, envío, recepción, monotonía y comparación ordenable.
+El siguiente paso natural es escribir ejemplos progresivos, ejercicios y
+soluciones ejecutables para conectar el modelo con eventos locales, mensajes,
+recepciones atrasadas y ordenamiento de trazas.
