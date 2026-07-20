@@ -15,9 +15,11 @@ El plan de trabajo ya vive en GitHub como milestones e issues. Cada paso queda
 asignado a `jeresoftx`, asociado al milestone correspondiente y etiquetado para
 mantener la regla del repositorio: un issue, un commit y un PR.
 
-Todavía no hay capítulos implementados ni publicados. El alcance operativo del
-curso queda trazado por el issue #1 y por la especificación
-`docs/superpowers/specs/2026-07-20-course-scope.md`.
+Consenso ya cuenta con especificación, modelo Rust mínimo, tests de integración,
+capítulo inicial, diagrama Mermaid, ejemplos progresivos y ejercicios. Su estado
+visible es `draft`: todavía falta agregar benchmark y cierre de estado antes de
+considerarlo `benchmarked`, y no se marca como `reviewed` ni `published` sin
+revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -37,7 +39,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 | # | Capítulo | Estado |
 |---|----------|--------|
-| 01 | Consenso | planned |
+| 01 | Consenso | draft |
 | 02 | Raft | planned |
 | 03 | Paxos | planned |
 | 04 | Elección de líder | planned |
@@ -69,6 +71,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #2: definir el glosario base de sistemas distribuidos.
-Ese glosario será el vocabulario común antes de escribir especificaciones de
-capítulos o código Rust de curso.
+Continuar con el issue #7: agregar benchmarks y cierre de estado de Consenso.
+Ese paso debe registrar medición educativa, actualizar estados y mantener la
+frontera de revisión humana antes de publicar.
