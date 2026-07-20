@@ -5,6 +5,8 @@
 //! sistema distribuido: nodos, mensajes, tiempo, fallas, replicación, consenso
 //! y consistencia observable.
 
+pub mod consensus;
+
 /// Nombre canónico del curso dentro de Jeresoft Academy.
 #[must_use]
 pub fn course_name() -> &'static str {
