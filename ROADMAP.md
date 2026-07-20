@@ -27,6 +27,10 @@ ejercicios, soluciones ejecutables y benchmark manual. Su estado visible es
 `benchmarked`: tiene medición educativa, pero todavía no se marca como
 `reviewed` ni `published` sin revisión humana.
 
+Paxos ya cuenta con especificación inicial e invariantes documentados. Su estado
+visible es `draft`: todavía falta modelo Rust, tests, ejemplos, ejercicios y
+benchmark.
+
 ## Progresión del Semestre 4
 
 El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
@@ -47,7 +51,7 @@ diseños de sistemas completos. La progresión esperada es:
 |---|----------|--------|
 | 01 | Consenso | benchmarked |
 | 02 | Raft | benchmarked |
-| 03 | Paxos | planned |
+| 03 | Paxos | draft |
 | 04 | Elección de líder | planned |
 | 05 | Locks distribuidos | planned |
 | 06 | Vector clocks | planned |
@@ -77,6 +81,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el siguiente milestone abierto después de cerrar `02. Raft`. El
-avance no debe marcar Consenso ni Raft como `reviewed` o `published` hasta que
-Joel haga revisión humana.
+Continuar con el issue #13: implementar modelo Rust mínimo de Paxos. Ese paso
+debe mantener una sola decisión determinista antes de avanzar a ejemplos y
+benchmarks.
