@@ -52,8 +52,10 @@ visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
 Lamport clocks ya cuenta con especificación inicial, modelo Rust mínimo, tests
-de invariantes, ejemplos progresivos y ejercicios. Su estado visible es
-`tested`: todavía falta benchmark educativo.
+de invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
+diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
+visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
+como `reviewed` ni `published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -79,7 +81,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 04 | Elección de líder | benchmarked |
 | 05 | Locks distribuidos | benchmarked |
 | 06 | Vector clocks | benchmarked |
-| 07 | Lamport clocks | tested |
+| 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | planned |
 | 09 | Teorema CAP | planned |
 | 10 | Consistent hashing | planned |
@@ -105,6 +107,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #31: agregar benchmarks y cierre de estado de Lamport
-clocks. Ese paso debe medir evento local, envío, recepción y ordenamiento de
-trazas.
+Continuar con el issue #32: definir especificación e invariantes de CRDTs. Ese
+paso debe explicar convergencia, operaciones conmutativas, estado replicado y
+límites frente a relojes lógicos.

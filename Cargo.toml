@@ -154,3 +154,8 @@ harness = false
 name = "vector_clock_bench"
 path = "benches/vector_clock_bench.rs"
 harness = false
+
+[[bench]]
+name = "lamport_clock_bench"
+path = "benches/lamport_clock_bench.rs"
+harness = false
