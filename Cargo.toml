@@ -91,3 +91,8 @@ harness = false
 name = "paxos_bench"
 path = "benches/paxos_bench.rs"
 harness = false
+
+[[bench]]
+name = "leader_election_bench"
+path = "benches/leader_election_bench.rs"
+harness = false
