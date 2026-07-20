@@ -79,6 +79,10 @@ Reglas operativas:
 - No se empuja trabajo directo a `main`, salvo creación inicial del repositorio
   o correcciones administrativas explícitamente aprobadas.
 - El PR debe mencionar el issue que resuelve.
+- El cuerpo del PR debe incluir una palabra clave de cierre reconocida por
+  GitHub, por ejemplo `Closes #N`, además del resumen en español. GitHub no
+  cierra issues automáticamente con fórmulas traducidas como `Cierra #N`, así
+  que usar solo español obliga a cerrar el issue manualmente después del merge.
 - Si un paso resulta demasiado grande para un solo commit, primero se divide en
   pasos más pequeños y se crean issues separados.
 - No se cierra ni se fusiona un PR sin revisión humana.
