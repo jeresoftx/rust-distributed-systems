@@ -75,7 +75,9 @@ Consistent hashing ya cuenta con especificación inicial e invariantes
 documentados, modelo Rust mínimo y tests de asignación por sucesor,
 wrap-around, determinismo y movimiento acotado. También cuenta con capítulo
 extendido, ejemplos progresivos, ejercicios, soluciones ejecutables y diagrama
-Mermaid. Su estado visible es `tested`: todavía falta benchmark educativo.
+Mermaid. También cuenta con benchmark educativo manual. Su estado visible es
+`benchmarked`: tiene medición educativa, pero todavía no se marca como
+`reviewed` ni `published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -104,7 +106,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | benchmarked |
 | 09 | Teorema CAP | benchmarked |
-| 10 | Consistent hashing | tested |
+| 10 | Consistent hashing | benchmarked |
 | 11 | Protocolo gossip | planned |
 | 12 | Transacciones distribuidas | planned |
 
@@ -127,7 +129,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #43: agregar benchmark educativo y cierre de estado de
-Consistent hashing. Ese paso debe medir asignación de claves, inserción de
-nodos, retiro de nodos y comparación de movimientos sin marcar el capítulo como
-`reviewed` ni `published`.
+Continuar con el issue #44: definir especificación e invariantes de Protocolo
+gossip. Ese paso debe explicar propagación epidémica, convergencia eventual,
+fanout, rondas de intercambio, límites y modos de falla.

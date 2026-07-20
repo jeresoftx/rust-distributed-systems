@@ -217,3 +217,8 @@ harness = false
 name = "cap_bench"
 path = "benches/cap_bench.rs"
 harness = false
+
+[[bench]]
+name = "consistent_hashing_bench"
+path = "benches/consistent_hashing_bench.rs"
+harness = false
