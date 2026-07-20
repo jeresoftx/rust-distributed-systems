@@ -112,3 +112,8 @@ harness = false
 name = "leader_election_bench"
 path = "benches/leader_election_bench.rs"
 harness = false
+
+[[bench]]
+name = "distributed_locks_bench"
+path = "benches/distributed_locks_bench.rs"
+harness = false

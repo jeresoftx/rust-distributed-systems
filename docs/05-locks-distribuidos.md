@@ -1,10 +1,11 @@
 # 05. Locks distribuidos
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
+> diagrama Mermaid. También cuenta con benchmark educativo manual. Todavía no
+> tiene revisión humana y no está marcado como `published`.
 
 ## Concepto
 
@@ -152,6 +153,33 @@ Los locks distribuidos tienen precio:
 - particiones fuerzan decisiones entre progreso y seguridad;
 - un coordinador simple puede convertirse en punto de falla.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/distributed_locks_bench.rs` y se
+ejecuta con:
+
+```bash
+cargo bench --bench distributed_locks_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- adquisición de lock disponible;
+- rechazo por recurso ocupado;
+- expiración y readquisición;
+- rechazo de fencing token obsoleto.
+
+Este benchmark no intenta representar un servicio real de coordinación. Usa
+`std::time::Instant`, `std::hint::black_box` y repeticiones simples para ligar
+cada operación con una invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, disco ni relojes físicos;
+- no confundir esta medición educativa con benchmarking estadístico formal.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -267,9 +295,10 @@ Solución sugerida:
 - `docs/04-eleccion-de-lider.md`
 - `diagrams/05-locks-distribuidos.mmd`
 - `docs/superpowers/specs/2026-07-20-distributed-locks-specification.md`
+- `docs/superpowers/specs/2026-07-20-distributed-locks-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar un benchmark educativo para medir
-adquisición, rechazo por recurso ocupado, expiración con readquisición y rechazo
-de fencing token obsoleto.
+El siguiente paso natural es revisar Locks distribuidos con criterio humano
+antes de decidir si se agregan correcciones o si el capítulo puede avanzar hacia
+publicación.
