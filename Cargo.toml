@@ -1,0 +1,14 @@
+[package]
+name = "rust-distributed-systems"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/jeresoftx/rust-distributed-systems"
+description = "Sistemas distribuidos en Rust para Jeresoft Academy."
+readme = "README.md"
+
+[lib]
+name = "rust_distributed_systems"
+path = "src/lib.rs"
+
+[dependencies]
