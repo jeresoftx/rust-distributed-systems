@@ -3,8 +3,8 @@
 > **Estado:** tested.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
-> humana.
+> invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
+> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
 
 ## Concepto
 
@@ -29,6 +29,27 @@ Paxos responde preguntas más formales que Raft:
 - cuándo una mayoría obliga a respetar un valor previo;
 - cómo se mantiene seguridad aunque varios proponentes compitan;
 - por qué una decisión futura no puede contradecir una decisión ya elegida.
+
+## Diagrama
+
+```mermaid
+sequenceDiagram
+    participant P as Proponente
+    participant A1 as Aceptor 1
+    participant A2 as Aceptor 2
+    participant A3 as Aceptor 3
+
+    P->>A1: prepare N10
+    A1->>P: promise N10
+    P->>A2: prepare N10
+    A2->>P: promise N10
+    Note over A1,A3: Dos de tres aceptores forman quórum
+    P->>A1: accept N10 valor A
+    A1->>P: accepted N10
+    P->>A2: accept N10 valor A
+    A2->>P: accepted N10
+    Note over P,A3: valor A queda elegido
+```
 
 ## Modelo educativo esperado
 
@@ -131,6 +152,43 @@ Paxos hace visible el precio de la seguridad:
 - un proponente puede terminar proponiendo un valor distinto al que quería si
   encuentra una aceptación previa.
 
+## Ejemplos progresivos
+
+### Básico
+
+`examples/soluciones/paxos_basic_majority.rs` muestra la ruta mínima: dos
+promesas, dos aceptaciones y un valor elegido en tres aceptores.
+
+La lección es que una aceptación aislada no decide. La decisión aparece cuando
+una mayoría acepta la misma propuesta y valor.
+
+### Intermedio
+
+`examples/soluciones/paxos_intermediate_stale_proposal.rs` muestra un aceptor
+que ya prometió una propuesta mayor y rechaza una propuesta vieja.
+
+La lección es que la promesa no es decoración: es la memoria que evita que el
+sistema regrese a una historia anterior.
+
+### Avanzado
+
+`examples/soluciones/paxos_advanced_adopted_value.rs` muestra un proponente que
+quería usar un valor nuevo, pero descubre una aceptación previa y adopta el valor
+seguro.
+
+La lección es incómoda y esencial: en Paxos, el proponente no siempre decide el
+valor que quería; decide el valor que preserva seguridad.
+
+### Caso real
+
+`examples/soluciones/paxos_real_config_decision.rs` interpreta el valor elegido
+como una configuración de clúster. En cinco aceptores, tres aceptaciones eligen
+la configuración.
+
+Este caso conecta Paxos con decisiones de coordinación: configuración activa,
+comando administrativo, versión de catálogo o cualquier valor que deba quedar
+como verdad común.
+
 ## Modos de falla
 
 El capítulo debe cubrir, como mínimo:
@@ -159,16 +217,49 @@ Este capítulo no promete:
 Primero se aprende por qué Paxos es seguro. Después se puede estudiar cómo se
 vuelve práctico.
 
+## Ejercicios
+
+### Nivel 1: mayoría
+
+Crea una ronda con tres aceptores. Envía `prepare` a dos aceptores, acepta el
+mismo valor en uno y verifica que todavía no hay decisión. Acepta en el segundo
+y verifica que el valor queda elegido.
+
+Solución sugerida: `examples/soluciones/paxos_basic_majority.rs`.
+
+### Nivel 2: propuesta vieja
+
+Haz que un aceptor prometa `ProposalNumber(20)`. Después intenta preparar
+`ProposalNumber(10)` contra el mismo aceptor y verifica que el modelo devuelve
+`PaxosError::StaleProposal`.
+
+Solución sugerida: `examples/soluciones/paxos_intermediate_stale_proposal.rs`.
+
+### Nivel 3: valor seguro
+
+Prepara y acepta parcialmente un valor. Luego inicia una propuesta mayor,
+recolecta promesas y usa `PaxosRound::safe_value` para confirmar que el nuevo
+proponente debe adoptar el valor previamente aceptado.
+
+Solución sugerida: `examples/soluciones/paxos_advanced_adopted_value.rs`.
+
+### Nivel 4: configuración elegida
+
+Modela una configuración de clúster como valor de Paxos en cinco aceptores.
+Verifica que dos aceptaciones no deciden y que tres aceptaciones sí.
+
+Solución sugerida: `examples/soluciones/paxos_real_config_decision.rs`.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
 - `docs/00-convenciones-de-simulacion.md`
 - `docs/01-consenso.md`
 - `docs/02-raft.md`
+- `diagrams/03-paxos.mmd`
 - `docs/superpowers/specs/2026-07-20-paxos-specification.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar ejemplos progresivos y ejercicios para que
-la preparación, la aceptación y la adopción de valor previo se estudien con
-escenarios ejecutables.
+El siguiente paso natural es agregar benchmark educativo para observar costos de
+preparación, aceptación, rechazo de propuesta vieja y adopción de valor previo.

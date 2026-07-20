@@ -28,8 +28,9 @@ ejercicios, soluciones ejecutables y benchmark manual. Su estado visible es
 `reviewed` ni `published` sin revisión humana.
 
 Paxos ya cuenta con especificación inicial, modelo Rust mínimo y tests de
-invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
-ejercicios, benchmark y revisión humana.
+invariantes, capítulo extendido, diagrama Mermaid, ejemplos progresivos,
+ejercicios y soluciones ejecutables. Su estado visible es `tested`: todavía
+faltan benchmark y revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -81,6 +82,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #14: escribir capítulo extendido, ejemplos progresivos y
-ejercicios de Paxos. Ese paso debe convertir el modelo probado en material de
-estudio guiado.
+Continuar con el issue #15: agregar benchmarks y cierre de estado de Paxos. Ese
+paso debe medir preparación, aceptación, rechazo de propuesta vieja y adopción
+de valor previo sin marcar el capítulo como `reviewed` ni `published`.
