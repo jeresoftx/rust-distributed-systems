@@ -28,3 +28,8 @@ path = "examples/soluciones/consensus_advanced_conflict.rs"
 [[example]]
 name = "consensus_real_config"
 path = "examples/soluciones/consensus_real_config.rs"
+
+[[bench]]
+name = "consensus_bench"
+path = "benches/consensus_bench.rs"
+harness = false

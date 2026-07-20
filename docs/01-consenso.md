@@ -1,5 +1,11 @@
 # 01. Consenso
 
+> **Estado:** benchmarked.
+>
+> El capítulo cuenta con especificación, modelo Rust, tests, ejemplos
+> progresivos, ejercicios, soluciones, diagrama Mermaid y benchmark manual. No
+> está marcado como `reviewed` ni `published`.
+
 ## Concepto
 
 Consenso es el problema de lograr que varios nodos acepten una decisión común
@@ -129,6 +135,33 @@ Este modelo es deliberadamente pequeño:
 - el historial crece linealmente con el número de eventos observados.
 
 La implementación prioriza lectura y determinismo sobre microoptimizaciones.
+
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/consensus_bench.rs` y se ejecuta con:
+
+```bash
+cargo bench --bench consensus_bench
+```
+
+La salida imprime una tabla con tres mediciones:
+
+- rondas completas que proponen, aceptan y deciden por mayoría;
+- rechazos de votos desde nodos no disponibles;
+- detección de aceptación incompatible en una misma ronda.
+
+Este benchmark no intenta producir números publicables. Usa
+`std::time::Instant`, `std::hint::black_box` y repeticiones simples para conectar
+el análisis de complejidad con una medición local. El valor importante es
+observar qué operación se mide, cuántas veces se ejecuta y qué invariante
+protege.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de sacar conclusiones;
+- comparar tendencias, no nanosegundos absolutos;
+- recordar que el modelo cubre una sola ronda lógica;
+- no confundir este benchmark educativo con benchmarking estadístico formal.
 
 ## Ejemplos progresivos
 
