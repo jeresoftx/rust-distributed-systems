@@ -1,11 +1,11 @@
 # 09. Teorema CAP
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo, tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark, revisión humana ni está marcado
-> como `published`.
+> diagrama Mermaid. También cuenta con benchmark educativo manual. Todavía no
+> tiene revisión humana ni está marcado como `published`.
 
 ## Concepto
 
@@ -165,6 +165,28 @@ CAP tiene precio:
 - timeouts pueden confundirse con particiones reales;
 - clasificar todo un sistema como CP o AP oculta decisiones por ruta crítica.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/cap_bench.rs` y se ejecuta con:
+
+```bash
+cargo bench --bench cap_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- red saludable;
+- rechazo por consistencia;
+- disponibilidad local con divergencia;
+- rutas de checkout bajo partición.
+
+Este benchmark no busca demostrar rendimiento de producción. Sirve para unir
+el costo conceptual con operaciones ejecutables: crear escenarios, evaluar
+decisiones, verificar invariantes y repetir rutas de negocio bajo partición.
+
+La lectura correcta no es "CAP es rápido". La lectura correcta es "el modelo
+puede ejecutarse, medirse y discutirse sin esconder la decisión de dominio".
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -277,9 +299,10 @@ Solución sugerida:
 - `docs/03-paxos.md`
 - `docs/08-crdts.md`
 - `docs/superpowers/specs/2026-07-20-cap-theorem-specification.md`
+- `docs/superpowers/specs/2026-07-20-cap-theorem-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar el benchmark educativo de Teorema CAP y
-cerrar el estado del capítulo como `benchmarked`, sin marcarlo como `reviewed`
-ni `published` hasta que exista revisión humana.
+El siguiente paso natural del curso es pasar a Consistent hashing. Teorema CAP
+queda en estado `benchmarked`, pendiente de revisión humana antes de cualquier
+marca `reviewed` o `published`.

@@ -196,3 +196,8 @@ harness = false
 name = "crdt_bench"
 path = "benches/crdt_bench.rs"
 harness = false
+
+[[bench]]
+name = "cap_bench"
+path = "benches/cap_bench.rs"
+harness = false

@@ -78,7 +78,7 @@ completo, pertenece a otro repositorio del camino.
 | 06 | Vector clocks | `src/vector_clock.rs` | benchmarked |
 | 07 | Lamport clocks | `src/lamport_clock.rs` | benchmarked |
 | 08 | CRDTs | `src/crdt.rs` | benchmarked |
-| 09 | Teorema CAP | `src/cap.rs` | tested |
+| 09 | Teorema CAP | `src/cap.rs` | benchmarked |
 | 10 | Consistent hashing | `src/consistent_hashing.rs` | planned |
 | 11 | Protocolo gossip | `src/gossip.rs` | planned |
 | 12 | Transacciones distribuidas | `src/distributed_transactions.rs` | planned |
