@@ -66,8 +66,8 @@ tiene medición educativa, pero todavía no se marca como `reviewed` ni
 
 Teorema CAP ya cuenta con especificación inicial e invariantes documentados. Su
 estado visible es `tested`: también cuenta con modelo Rust mínimo y tests de
-decisiones bajo partición. Todavía faltan ejemplos progresivos, ejercicios,
-soluciones ejecutables y benchmark.
+decisiones bajo partición, ejemplos progresivos, ejercicios, soluciones
+ejecutables y diagrama Mermaid. Todavía falta benchmark educativo.
 
 ## Progresión del Semestre 4
 
@@ -119,6 +119,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #38: escribir capítulo, ejemplos progresivos, ejercicios
-y soluciones de Teorema CAP. Ese paso debe convertir el modelo de decisiones
-bajo partición en una experiencia educativa completa antes del benchmark.
+Continuar con el issue #39: agregar benchmark educativo y cierre de estado de
+Teorema CAP. Ese paso debe medir evaluación de red saludable, rechazo por
+consistencia, aceptación local con divergencia y rutas de checkout bajo
+partición sin marcar el capítulo como `reviewed` ni `published`.

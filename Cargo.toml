@@ -141,6 +141,22 @@ path = "examples/soluciones/crdt_advanced_convergence.rs"
 name = "crdt_real_reservation_metrics"
 path = "examples/soluciones/crdt_real_reservation_metrics.rs"
 
+[[example]]
+name = "cap_basic_healthy_network"
+path = "examples/soluciones/cap_basic_healthy_network.rs"
+
+[[example]]
+name = "cap_intermediate_partition_reject"
+path = "examples/soluciones/cap_intermediate_partition_reject.rs"
+
+[[example]]
+name = "cap_advanced_available_divergence"
+path = "examples/soluciones/cap_advanced_available_divergence.rs"
+
+[[example]]
+name = "cap_real_reservation_checkout"
+path = "examples/soluciones/cap_real_reservation_checkout.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
