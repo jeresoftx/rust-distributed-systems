@@ -51,6 +51,10 @@ diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
 visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
+Lamport clocks ya cuenta con especificación inicial e invariantes documentados.
+Su estado visible es `draft`: todavía falta modelo Rust, tests, ejemplos,
+ejercicios y benchmark.
+
 ## Progresión del Semestre 4
 
 El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
@@ -75,7 +79,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 04 | Elección de líder | benchmarked |
 | 05 | Locks distribuidos | benchmarked |
 | 06 | Vector clocks | benchmarked |
-| 07 | Lamport clocks | planned |
+| 07 | Lamport clocks | draft |
 | 08 | CRDTs | planned |
 | 09 | Teorema CAP | planned |
 | 10 | Consistent hashing | planned |
@@ -101,6 +105,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #28: definir especificación e invariantes de Lamport
-clocks. Ese paso debe explicar relojes lógicos escalares, orden parcial
-observable y límites frente a Vector clocks.
+Continuar con el issue #29: implementar modelo Rust mínimo de Lamport clocks.
+Ese paso debe representar evento local, envío, recepción, monotonía y orden
+determinista sin depender de relojes físicos.
