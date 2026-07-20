@@ -71,6 +71,11 @@ benchmark educativo manual. Su estado visible es `benchmarked`: tiene medición
 educativa, pero todavía no se marca como `reviewed` ni `published` sin revisión
 humana.
 
+Consistent hashing ya cuenta con especificación inicial e invariantes
+documentados. Su estado visible es `draft`: todavía falta modelo Rust mínimo,
+tests, capítulo extendido, ejemplos, ejercicios, soluciones ejecutables,
+diagrama Mermaid y benchmark educativo.
+
 ## Progresión del Semestre 4
 
 El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
@@ -98,7 +103,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | benchmarked |
 | 09 | Teorema CAP | benchmarked |
-| 10 | Consistent hashing | planned |
+| 10 | Consistent hashing | draft |
 | 11 | Protocolo gossip | planned |
 | 12 | Transacciones distribuidas | planned |
 
@@ -121,7 +126,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #40: definir especificación e invariantes de Consistent
-hashing. Ese paso debe explicar el concepto antes del mecanismo, declarar
-invariantes, límites, costos y modos de falla, y mantener la trazabilidad de un
-issue, un commit y un PR.
+Continuar con el issue #41: implementar el modelo Rust mínimo de Consistent
+hashing. Ese paso debe probar asignación por sucesor, wrap-around, anillo vacío,
+determinismo y movimiento acotado ante cambios de membresía.
