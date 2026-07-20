@@ -11,3 +11,4 @@
 - [06. Vector clocks](./06-vector-clocks.md)
 - [07. Lamport clocks](./07-lamport-clocks.md)
 - [08. CRDTs](./08-crdts.md)
+- [09. Teorema CAP](./09-teorema-cap.md)
