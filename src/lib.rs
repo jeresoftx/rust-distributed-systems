@@ -7,6 +7,7 @@
 
 pub mod consensus;
 pub mod distributed_locks;
+pub mod lamport_clock;
 pub mod leader_election;
 pub mod paxos;
 pub mod raft;
