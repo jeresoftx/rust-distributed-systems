@@ -73,7 +73,7 @@ completo, pertenece a otro repositorio del camino.
 | 01 | Consenso | `src/consensus.rs` | benchmarked |
 | 02 | Raft | `src/raft.rs` | benchmarked |
 | 03 | Paxos | `src/paxos.rs` | benchmarked |
-| 04 | Elección de líder | `src/leader_election.rs` | planned |
+| 04 | Elección de líder | `src/leader_election.rs` | draft |
 | 05 | Locks distribuidos | `src/distributed_locks.rs` | planned |
 | 06 | Vector clocks | `src/vector_clock.rs` | planned |
 | 07 | Lamport clocks | `src/lamport_clock.rs` | planned |
