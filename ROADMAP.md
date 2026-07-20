@@ -45,9 +45,9 @@ y diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
 visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
-Vector clocks ya cuenta con especificación inicial, modelo Rust mínimo y tests
-de invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
-ejercicios, soluciones ejecutables y benchmark.
+Vector clocks ya cuenta con especificación inicial, modelo Rust mínimo, tests
+de invariantes, ejemplos progresivos y ejercicios. Su estado visible es
+`tested`: todavía falta benchmark educativo.
 
 ## Progresión del Semestre 4
 
@@ -99,6 +99,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #26: escribir capítulo, ejemplos y ejercicios de Vector
-clocks. Ese paso debe volver progresiva la explicación de causalidad,
-concurrencia observable y fusión de conocimiento.
+Continuar con el issue #27: agregar benchmarks y cierre de estado de Vector
+clocks. Ese paso debe medir incremento, fusión, comparación causal y detección
+de concurrencia.

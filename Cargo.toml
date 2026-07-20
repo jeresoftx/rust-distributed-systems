@@ -93,6 +93,22 @@ path = "examples/soluciones/distributed_locks_advanced_fencing_token.rs"
 name = "distributed_locks_real_scheduler_job"
 path = "examples/soluciones/distributed_locks_real_scheduler_job.rs"
 
+[[example]]
+name = "vector_clock_basic_increment"
+path = "examples/soluciones/vector_clock_basic_increment.rs"
+
+[[example]]
+name = "vector_clock_intermediate_merge"
+path = "examples/soluciones/vector_clock_intermediate_merge.rs"
+
+[[example]]
+name = "vector_clock_advanced_concurrent_updates"
+path = "examples/soluciones/vector_clock_advanced_concurrent_updates.rs"
+
+[[example]]
+name = "vector_clock_real_profile_conflict"
+path = "examples/soluciones/vector_clock_real_profile_conflict.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
