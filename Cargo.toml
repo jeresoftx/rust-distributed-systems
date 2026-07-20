@@ -45,6 +45,22 @@ path = "examples/soluciones/raft_advanced_log_conflict.rs"
 name = "raft_real_replicated_config"
 path = "examples/soluciones/raft_real_replicated_config.rs"
 
+[[example]]
+name = "paxos_basic_majority"
+path = "examples/soluciones/paxos_basic_majority.rs"
+
+[[example]]
+name = "paxos_intermediate_stale_proposal"
+path = "examples/soluciones/paxos_intermediate_stale_proposal.rs"
+
+[[example]]
+name = "paxos_advanced_adopted_value"
+path = "examples/soluciones/paxos_advanced_adopted_value.rs"
+
+[[example]]
+name = "paxos_real_config_decision"
+path = "examples/soluciones/paxos_real_config_decision.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"

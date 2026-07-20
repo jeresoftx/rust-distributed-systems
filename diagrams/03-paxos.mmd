@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant P as Proponente
+    participant A1 as Aceptor 1
+    participant A2 as Aceptor 2
+    participant A3 as Aceptor 3
+
+    P->>A1: prepare N10
+    A1->>P: promise N10
+    P->>A2: prepare N10
+    A2->>P: promise N10
+    Note over A1,A3: Dos de tres aceptores forman quórum
+    P->>A1: accept N10 valor A
+    A1->>P: accepted N10
+    P->>A2: accept N10 valor A
+    A2->>P: accepted N10
+    Note over P,A3: valor A queda elegido
