@@ -64,10 +64,12 @@ cuenta con benchmark educativo manual. Su estado visible es `benchmarked`:
 tiene medición educativa, pero todavía no se marca como `reviewed` ni
 `published` sin revisión humana.
 
-Teorema CAP ya cuenta con especificación inicial e invariantes documentados. Su
-estado visible es `tested`: también cuenta con modelo Rust mínimo y tests de
-decisiones bajo partición, ejemplos progresivos, ejercicios, soluciones
-ejecutables y diagrama Mermaid. Todavía falta benchmark educativo.
+Teorema CAP ya cuenta con especificación inicial e invariantes documentados,
+modelo Rust mínimo, tests de decisiones bajo partición, ejemplos progresivos,
+ejercicios, soluciones ejecutables y diagrama Mermaid. También cuenta con
+benchmark educativo manual. Su estado visible es `benchmarked`: tiene medición
+educativa, pero todavía no se marca como `reviewed` ni `published` sin revisión
+humana.
 
 ## Progresión del Semestre 4
 
@@ -95,7 +97,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 06 | Vector clocks | benchmarked |
 | 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | benchmarked |
-| 09 | Teorema CAP | tested |
+| 09 | Teorema CAP | benchmarked |
 | 10 | Consistent hashing | planned |
 | 11 | Protocolo gossip | planned |
 | 12 | Transacciones distribuidas | planned |
@@ -119,7 +121,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #39: agregar benchmark educativo y cierre de estado de
-Teorema CAP. Ese paso debe medir evaluación de red saludable, rechazo por
-consistencia, aceptación local con divergencia y rutas de checkout bajo
-partición sin marcar el capítulo como `reviewed` ni `published`.
+Continuar con el issue #40: definir especificación e invariantes de Consistent
+hashing. Ese paso debe explicar el concepto antes del mecanismo, declarar
+invariantes, límites, costos y modos de falla, y mantener la trazabilidad de un
+issue, un commit y un PR.
