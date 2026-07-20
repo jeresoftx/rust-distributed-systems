@@ -3,8 +3,8 @@
 > **Estado:** tested.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
-> humana.
+> invariantes, ejemplos progresivos y ejercicios. Todavía no tiene benchmark ni
+> revisión humana.
 
 ## Concepto
 
@@ -28,6 +28,24 @@ Vector clocks responden preguntas prácticas:
 - qué conocimiento debe fusionarse al recibir un mensaje;
 - cuándo una actualización es vieja;
 - cuándo una actualización necesita resolución de conflicto.
+
+## Diagrama
+
+```mermaid
+sequenceDiagram
+    participant A as Nodo A
+    participant B as Nodo B
+    participant C as Nodo C
+
+    A->>A: incrementa A = 1
+    B->>B: incrementa B = 1
+    Note over A,B: A y B todavía son concurrentes
+    A->>C: envía reloj {A:1}
+    B->>C: envía reloj {B:1}
+    C->>C: fusiona por máximo {A:1, B:1}
+    C->>C: incrementa C = 1
+    Note over A,C: El evento de C ocurre después de A y B
+```
 
 ## Modelo educativo esperado
 
@@ -62,6 +80,28 @@ La implementación trata los nodos ausentes como `Counter(0)`. Esta regla evita
 casos especiales en la comparación: un reloj vacío está antes de uno que ya
 observó eventos, y dos relojes con incrementos en nodos distintos son
 concurrentes.
+
+Uso básico:
+
+```rust
+use rust_distributed_systems::vector_clock::{
+    CausalRelation, Counter, NodeId, VectorClock,
+};
+
+let mut mobile = VectorClock::new();
+mobile.increment(NodeId(1));
+
+let mut web = VectorClock::new();
+web.increment(NodeId(2));
+
+assert_eq!(mobile.counter(NodeId(1)), Counter(1));
+assert_eq!(mobile.counter(NodeId(2)), Counter(0));
+assert_eq!(mobile.compare(&web), CausalRelation::Concurrent);
+
+let merged = mobile.merged(&web);
+assert_eq!(mobile.compare(&merged), CausalRelation::Before);
+assert_eq!(web.compare(&merged), CausalRelation::Before);
+```
 
 ## Invariantes
 
@@ -107,6 +147,46 @@ Vector clocks tienen precio:
 - nodos dinámicos complican poda y compactación;
 - detectar concurrencia no resuelve el conflicto automáticamente.
 
+## Ejemplos progresivos
+
+### Básico
+
+`examples/soluciones/vector_clock_basic_increment.rs` muestra la ruta mínima:
+un nodo incrementa dos veces su propio contador y un nodo no observado se lee
+como `Counter(0)`.
+
+La lección es que un vector clock no empieza con una tabla global llena. Solo
+registra lo que el evento ha observado.
+
+### Intermedio
+
+`examples/soluciones/vector_clock_intermediate_merge.rs` muestra un nodo que
+recibe conocimiento de otro, fusiona por máximo y después incrementa su propio
+contador.
+
+La lección es que recibir un mensaje no solo transporta datos de aplicación:
+también transporta evidencia causal.
+
+### Avanzado
+
+`examples/soluciones/vector_clock_advanced_concurrent_updates.rs` muestra dos
+actualizaciones independientes que resultan `Concurrent`. Después crea un reloj
+fusionado que queda causalmente después de ambas.
+
+La lección es que detectar concurrencia no elige un ganador. Solo evita mentir:
+el sistema sabe que necesita una política explícita de resolución.
+
+### Caso real
+
+`examples/soluciones/vector_clock_real_profile_conflict.rs` interpreta dos
+ediciones de perfil hechas desde clientes distintos. Una modifica ciudad y la
+otra nombre visible; como son concurrentes, la aplicación debe resolver el
+conflicto y emitir una nueva versión cuyo reloj contiene ambas ramas.
+
+Este caso conecta el modelo con sincronización offline, perfiles de usuario,
+documentos colaborativos, carritos de compra y cualquier flujo donde varias
+réplicas aceptan escritura antes de comunicarse.
+
 ## Modos de falla
 
 El capítulo debe cubrir, como mínimo:
@@ -133,6 +213,45 @@ Este capítulo no promete:
 Primero se aprende causalidad parcial. Después se estudia cómo se usa para
 replicación eventual, CRDTs, resolución de conflictos y diseños de sistemas.
 
+## Ejercicios
+
+### Nivel 1: incremento local
+
+Crea un `VectorClock` vacío. Incrementa `NodeId(1)` dos veces y verifica que su
+contador sea `Counter(2)`. Consulta `NodeId(2)` y confirma que devuelve
+`Counter(0)`.
+
+Solución sugerida:
+`examples/soluciones/vector_clock_basic_increment.rs`.
+
+### Nivel 2: fusión de conocimiento
+
+Crea un reloj para `NodeId(1)` y otro para `NodeId(2)`. Haz que el segundo
+fusione el primero, incremente su propio nodo y verifica que el primer reloj
+esté `Before` respecto al segundo.
+
+Solución sugerida:
+`examples/soluciones/vector_clock_intermediate_merge.rs`.
+
+### Nivel 3: concurrencia explícita
+
+Modela dos actualizaciones que ocurren sin observarse: una en `NodeId(1)` y otra
+en `NodeId(2)`. Verifica que la comparación sea `Concurrent`. Después fusiona
+ambos relojes y confirma que el reloj fusionado está después de los dos.
+
+Solución sugerida:
+`examples/soluciones/vector_clock_advanced_concurrent_updates.rs`.
+
+### Nivel 4: conflicto de perfil
+
+Modela una versión base de perfil y dos ediciones concurrentes desde clientes
+distintos. Una edición cambia ciudad y otra cambia nombre visible. Detecta la
+concurrencia, resuelve el conflicto con una regla explícita y emite una versión
+fusionada cuyo reloj contenga ambas ediciones.
+
+Solución sugerida:
+`examples/soluciones/vector_clock_real_profile_conflict.rs`.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
@@ -143,6 +262,5 @@ replicación eventual, CRDTs, resolución de conflictos y diseños de sistemas.
 
 ## Siguiente paso
 
-El siguiente paso natural es escribir ejemplos progresivos, ejercicios y
-soluciones ejecutables para conectar el modelo con escenarios de actualización
-concurrente, mensajes atrasados y fusión de conocimiento.
+El siguiente paso natural es agregar el benchmark educativo del capítulo para
+medir incremento, fusión, comparación causal y detección de concurrencia.
