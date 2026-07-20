@@ -1,10 +1,11 @@
 # 03. Paxos
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
+> diagrama Mermaid. También cuenta con benchmark educativo manual. Todavía no
+> tiene revisión humana y no está marcado como `published`.
 
 ## Concepto
 
@@ -152,6 +153,32 @@ Paxos hace visible el precio de la seguridad:
 - un proponente puede terminar proponiendo un valor distinto al que quería si
   encuentra una aceptación previa.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/paxos_bench.rs` y se ejecuta con:
+
+```bash
+cargo bench --bench paxos_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- promesas por mayoría;
+- aceptación y decisión;
+- rechazo de propuesta vieja;
+- adopción de valor previamente aceptado.
+
+Este benchmark no intenta representar Paxos de producción. Usa
+`std::time::Instant`, `std::hint::black_box` y repeticiones simples para ligar
+cada operación con una invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que el modelo cubre una sola decisión;
+- no confundir esta medición educativa con benchmarking estadístico formal.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -261,5 +288,5 @@ Solución sugerida: `examples/soluciones/paxos_real_config_decision.rs`.
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar benchmark educativo para observar costos de
-preparación, aceptación, rechazo de propuesta vieja y adopción de valor previo.
+El siguiente paso natural es revisar Paxos con criterio humano antes de decidir
+si se agregan correcciones o si el capítulo puede avanzar hacia publicación.

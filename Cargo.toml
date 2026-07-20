@@ -70,3 +70,8 @@ harness = false
 name = "raft_bench"
 path = "benches/raft_bench.rs"
 harness = false
+
+[[bench]]
+name = "paxos_bench"
+path = "benches/paxos_bench.rs"
+harness = false

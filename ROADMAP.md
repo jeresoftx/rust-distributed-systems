@@ -29,8 +29,9 @@ ejercicios, soluciones ejecutables y benchmark manual. Su estado visible es
 
 Paxos ya cuenta con especificación inicial, modelo Rust mínimo y tests de
 invariantes, capítulo extendido, diagrama Mermaid, ejemplos progresivos,
-ejercicios y soluciones ejecutables. Su estado visible es `tested`: todavía
-faltan benchmark y revisión humana.
+ejercicios, soluciones ejecutables y benchmark manual. Su estado visible es
+`benchmarked`: tiene medición educativa, pero todavía no se marca como
+`reviewed` ni `published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -52,7 +53,7 @@ diseños de sistemas completos. La progresión esperada es:
 |---|----------|--------|
 | 01 | Consenso | benchmarked |
 | 02 | Raft | benchmarked |
-| 03 | Paxos | tested |
+| 03 | Paxos | benchmarked |
 | 04 | Elección de líder | planned |
 | 05 | Locks distribuidos | planned |
 | 06 | Vector clocks | planned |
@@ -82,6 +83,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #15: agregar benchmarks y cierre de estado de Paxos. Ese
-paso debe medir preparación, aceptación, rechazo de propuesta vieja y adopción
-de valor previo sin marcar el capítulo como `reviewed` ni `published`.
+Continuar con el siguiente milestone abierto después de cerrar `03. Paxos`. El
+avance no debe marcar Consenso, Raft ni Paxos como `reviewed` o `published`
+hasta que Joel haga revisión humana.
