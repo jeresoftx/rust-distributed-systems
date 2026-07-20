@@ -65,8 +65,9 @@ tiene medición educativa, pero todavía no se marca como `reviewed` ni
 `published` sin revisión humana.
 
 Teorema CAP ya cuenta con especificación inicial e invariantes documentados. Su
-estado visible es `draft`: todavía falta modelo Rust, tests, ejemplos,
-ejercicios, soluciones ejecutables y benchmark.
+estado visible es `tested`: también cuenta con modelo Rust mínimo y tests de
+decisiones bajo partición. Todavía faltan ejemplos progresivos, ejercicios,
+soluciones ejecutables y benchmark.
 
 ## Progresión del Semestre 4
 
@@ -94,7 +95,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 06 | Vector clocks | benchmarked |
 | 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | benchmarked |
-| 09 | Teorema CAP | draft |
+| 09 | Teorema CAP | tested |
 | 10 | Consistent hashing | planned |
 | 11 | Protocolo gossip | planned |
 | 12 | Transacciones distribuidas | planned |
@@ -118,6 +119,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #37: implementar modelo Rust mínimo de Teorema CAP. Ese
-paso debe evaluar decisiones bajo partición para consistencia fuerte,
-disponibilidad y aceptación eventual con riesgo de divergencia.
+Continuar con el issue #38: escribir capítulo, ejemplos progresivos, ejercicios
+y soluciones de Teorema CAP. Ese paso debe convertir el modelo de decisiones
+bajo partición en una experiencia educativa completa antes del benchmark.
