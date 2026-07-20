@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant C1 as Cliente 1
+    participant L as Coordinador de locks
+    participant C2 as Cliente 2
+    participant R as Recurso protegido
+
+    C1->>L: acquire recurso A, lease 5
+    L->>C1: grant token 1, expira T5
+    C1->>R: write con token 1
+    R->>C1: acepta token 1
+    Note over C1,L: Cliente 1 se pausa y el lease vence
+    C2->>L: acquire recurso A, lease 5
+    L->>C2: grant token 2, expira T10
+    C1->>R: write tardío con token 1
+    R-->>C1: rechaza token obsoleto
+    C2->>R: write con token 2
+    R->>C2: acepta token vigente

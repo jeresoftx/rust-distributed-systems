@@ -3,8 +3,8 @@
 > **Estado:** tested.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
-> humana.
+> invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
+> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
 
 ## Concepto
 
@@ -28,6 +28,28 @@ Locks distribuidos responden preguntas prácticas:
 - cómo impedir que un propietario viejo escriba después de expirar;
 - cómo explicar por qué una adquisición, renovación o liberación fue aceptada o
   rechazada.
+
+## Diagrama
+
+```mermaid
+sequenceDiagram
+    participant C1 as Cliente 1
+    participant L as Coordinador de locks
+    participant C2 as Cliente 2
+    participant R as Recurso protegido
+
+    C1->>L: acquire recurso A, lease 5
+    L->>C1: grant token 1, expira T5
+    C1->>R: write con token 1
+    R->>C1: acepta token 1
+    Note over C1,L: Cliente 1 se pausa y el lease vence
+    C2->>L: acquire recurso A, lease 5
+    L->>C2: grant token 2, expira T10
+    C1->>R: write tardío con token 1
+    R-->>C1: rechaza token obsoleto
+    C2->>R: write con token 2
+    R->>C2: acepta token vigente
+```
 
 ## Modelo educativo esperado
 
@@ -130,6 +152,45 @@ Los locks distribuidos tienen precio:
 - particiones fuerzan decisiones entre progreso y seguridad;
 - un coordinador simple puede convertirse en punto de falla.
 
+## Ejemplos progresivos
+
+### Básico
+
+`examples/soluciones/distributed_locks_basic_acquire.rs` muestra la ruta mínima:
+un cliente adquiere un lock disponible y recibe `FencingToken(1)`.
+
+La lección es que la concesión no solo dice "sí". También declara propietario,
+recurso, token y expiración.
+
+### Intermedio
+
+`examples/soluciones/distributed_locks_intermediate_expiration.rs` muestra que
+un segundo cliente no puede adquirir un recurso ocupado hasta que el tiempo
+lógico alcanza la expiración del lease vigente.
+
+La lección es que el lock distribuido no debe depender de que el propietario se
+porte bien. Si desaparece, la expiración define cuándo el recurso puede volver a
+adquirirse.
+
+### Avanzado
+
+`examples/soluciones/distributed_locks_advanced_fencing_token.rs` muestra el
+caso más peligroso: un cliente viejo intenta operar después de que otro cliente
+ya obtuvo un token más reciente.
+
+La lección es que el lease por sí solo no basta. El recurso protegido debe
+rechazar tokens obsoletos para evitar escrituras tardías.
+
+### Caso real
+
+`examples/soluciones/distributed_locks_real_scheduler_job.rs` interpreta el
+recurso como una tarea programada de cierre diario. Un worker adquiere, renueva,
+libera y otro worker toma el relevo con un token mayor.
+
+Este caso conecta el modelo con sistemas reales: schedulers distribuidos,
+procesamiento de lotes, migraciones, generación de reportes y tareas que deben
+ejecutarse una sola vez por ventana.
+
 ## Modos de falla
 
 El capítulo debe cubrir, como mínimo:
@@ -158,6 +219,45 @@ Este capítulo no promete:
 Primero se aprende propiedad temporal. Después se estudia cómo se combina con
 relojes lógicos, consenso, transacciones y operación real.
 
+## Ejercicios
+
+### Nivel 1: adquisición
+
+Crea un `DistributedLockManager` en `LogicalTime(0)`. Adquiere el recurso
+`ResourceId("billing-job")` con `ClientId(1)` y `LeaseDuration(5)`. Verifica que
+el propietario activo sea `ClientId(1)` y que el token sea `FencingToken(1)`.
+
+Solución sugerida:
+`examples/soluciones/distributed_locks_basic_acquire.rs`.
+
+### Nivel 2: expiración
+
+Haz que `ClientId(1)` adquiera `ResourceId("indexer")`. Intenta que
+`ClientId(2)` lo adquiera antes de la expiración y verifica
+`DistributedLockError::ResourceBusy`. Después avanza el tiempo lógico hasta la
+expiración y confirma que `ClientId(2)` obtiene el recurso con token mayor.
+
+Solución sugerida:
+`examples/soluciones/distributed_locks_intermediate_expiration.rs`.
+
+### Nivel 3: token obsoleto
+
+Haz que `ClientId(1)` adquiera un recurso, deja expirar su lease y permite que
+`ClientId(2)` lo adquiera. Después valida una operación con el token viejo y
+verifica que el modelo devuelve `DistributedLockError::StaleFencingToken`.
+
+Solución sugerida:
+`examples/soluciones/distributed_locks_advanced_fencing_token.rs`.
+
+### Nivel 4: scheduler distribuido
+
+Modela una tarea programada como recurso. Un worker debe adquirir el lock,
+renovarlo mientras trabaja, liberarlo al terminar y permitir que otro worker
+tome el relevo con un token mayor.
+
+Solución sugerida:
+`examples/soluciones/distributed_locks_real_scheduler_job.rs`.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
@@ -165,10 +265,11 @@ relojes lógicos, consenso, transacciones y operación real.
 - `docs/01-consenso.md`
 - `docs/02-raft.md`
 - `docs/04-eleccion-de-lider.md`
+- `diagrams/05-locks-distribuidos.mmd`
 - `docs/superpowers/specs/2026-07-20-distributed-locks-specification.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar ejemplos progresivos y ejercicios para
-estudiar adquisición, recurso ocupado, expiración, renovación, liberación y
-fencing tokens obsoletos.
+El siguiente paso natural es agregar un benchmark educativo para medir
+adquisición, rechazo por recurso ocupado, expiración con readquisición y rechazo
+de fencing token obsoleto.

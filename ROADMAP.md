@@ -40,8 +40,9 @@ visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
 Locks distribuidos ya cuenta con especificación inicial, modelo Rust mínimo y
-tests de invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
-ejercicios, benchmark y revisión humana.
+tests de invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables
+y diagrama Mermaid. Su estado visible es `tested`: todavía falta benchmark y
+revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -93,6 +94,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #22: escribir capítulo extendido, ejemplos progresivos y
-ejercicios de Locks distribuidos. Ese paso debe convertir el modelo probado en
-material de estudio guiado.
+Continuar con el issue #23: agregar benchmark educativo y cierre de capítulo de
+Locks distribuidos. Ese paso debe medir las operaciones principales sin marcar
+el capítulo como `reviewed` ni `published`.

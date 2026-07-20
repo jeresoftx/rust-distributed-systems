@@ -77,6 +77,22 @@ path = "examples/soluciones/leader_election_advanced_double_vote.rs"
 name = "leader_election_real_failover"
 path = "examples/soluciones/leader_election_real_failover.rs"
 
+[[example]]
+name = "distributed_locks_basic_acquire"
+path = "examples/soluciones/distributed_locks_basic_acquire.rs"
+
+[[example]]
+name = "distributed_locks_intermediate_expiration"
+path = "examples/soluciones/distributed_locks_intermediate_expiration.rs"
+
+[[example]]
+name = "distributed_locks_advanced_fencing_token"
+path = "examples/soluciones/distributed_locks_advanced_fencing_token.rs"
+
+[[example]]
+name = "distributed_locks_real_scheduler_job"
+path = "examples/soluciones/distributed_locks_real_scheduler_job.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
