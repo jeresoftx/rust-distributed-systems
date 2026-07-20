@@ -6,6 +6,7 @@
 //! y consistencia observable.
 
 pub mod consensus;
+pub mod raft;
 
 /// Nombre canónico del curso dentro de Jeresoft Academy.
 #[must_use]

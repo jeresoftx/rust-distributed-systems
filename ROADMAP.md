@@ -21,9 +21,9 @@ ejecutables, fuente Mermaid y benchmark manual. Su estado visible es
 `benchmarked`: tiene medición educativa, pero todavía no se marca como
 `reviewed` ni `published` sin revisión humana.
 
-Raft ya cuenta con especificación inicial e invariantes documentados. Su estado
-visible es `draft`: todavía falta modelo Rust, tests, ejemplos, ejercicios y
-benchmark.
+Raft ya cuenta con especificación inicial, modelo Rust mínimo y tests de
+invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
+ejercicios, benchmark y revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -44,7 +44,7 @@ diseños de sistemas completos. La progresión esperada es:
 | # | Capítulo | Estado |
 |---|----------|--------|
 | 01 | Consenso | benchmarked |
-| 02 | Raft | draft |
+| 02 | Raft | tested |
 | 03 | Paxos | planned |
 | 04 | Elección de líder | planned |
 | 05 | Locks distribuidos | planned |
@@ -75,5 +75,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #9: implementar modelo Rust mínimo de Raft. Ese paso
-debe mantener la simulación determinista y no agregar dependencias externas.
+Continuar con el issue #10: agregar capítulo extendido, ejemplos progresivos y
+ejercicios de Raft. Ese paso debe convertir el modelo probado en material de
+estudio guiado.
