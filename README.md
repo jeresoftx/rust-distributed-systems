@@ -74,7 +74,7 @@ completo, pertenece a otro repositorio del camino.
 | 02 | Raft | `src/raft.rs` | benchmarked |
 | 03 | Paxos | `src/paxos.rs` | benchmarked |
 | 04 | Elección de líder | `src/leader_election.rs` | benchmarked |
-| 05 | Locks distribuidos | `src/distributed_locks.rs` | draft |
+| 05 | Locks distribuidos | `src/distributed_locks.rs` | tested |
 | 06 | Vector clocks | `src/vector_clock.rs` | planned |
 | 07 | Lamport clocks | `src/lamport_clock.rs` | planned |
 | 08 | CRDTs | `src/crdt.rs` | planned |

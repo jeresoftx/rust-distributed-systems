@@ -1,9 +1,10 @@
 # 05. Locks distribuidos
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
+> humana.
 
 ## Concepto
 
@@ -47,6 +48,39 @@ El modelo de este curso debe representar locks por lease con fencing tokens:
 
 El objetivo no es construir un servicio de coordinación real. El objetivo es
 aislar la diferencia entre exclusión local y propiedad temporal distribuida.
+
+## Implementación
+
+El módulo `src/distributed_locks.rs` implementa un coordinador determinista de
+locks por lease con tiempo lógico. Su API expone una secuencia pequeña:
+
+- adquirir un lock;
+- renovar un lock vigente;
+- liberar un lock vigente;
+- avanzar el tiempo lógico;
+- consultar propietario activo;
+- validar operaciones con fencing token;
+- consultar historial.
+
+Uso básico:
+
+```rust
+use rust_distributed_systems::distributed_locks::{
+    ClientId, DistributedLockManager, LeaseDuration, LogicalTime, ResourceId,
+};
+
+let mut locks = DistributedLockManager::new(LogicalTime(0));
+
+let grant = locks.acquire(
+    ClientId(1),
+    ResourceId("billing-job"),
+    LeaseDuration(5),
+)?;
+locks.validate_operation(ResourceId("billing-job"), grant.token)?;
+
+assert_eq!(locks.owner(ResourceId("billing-job")), Some((ClientId(1), grant.token)));
+# Ok::<(), rust_distributed_systems::distributed_locks::DistributedLockError>(())
+```
 
 ## Invariantes
 
@@ -135,6 +169,6 @@ relojes lógicos, consenso, transacciones y operación real.
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar un modelo Rust mínimo de Locks
-distribuidos con leases lógicos, fencing tokens, propiedad por recurso,
-renovación, liberación, expiración y errores explícitos.
+El siguiente paso natural es agregar ejemplos progresivos y ejercicios para
+estudiar adquisición, recurso ocupado, expiración, renovación, liberación y
+fencing tokens obsoletos.
