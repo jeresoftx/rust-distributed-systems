@@ -1,9 +1,10 @@
 # 06. Vector clocks
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark ni revisión
+> humana.
 
 ## Concepto
 
@@ -44,6 +45,23 @@ El modelo de este curso debe representar causalidad parcial con relojes vector:
 El objetivo no es simular una red ni construir un CRDT completo. El objetivo es
 aprender a ver cuándo el sistema puede probar causalidad y cuándo solo puede
 decir "estos eventos son concurrentes".
+
+## Implementación
+
+El módulo `src/vector_clock.rs` implementa un reloj vectorial determinista con
+un mapa ordenado de nodos a contadores. Su API expone una secuencia pequeña:
+
+- crear un reloj vacío;
+- consultar el contador observado de un nodo;
+- incrementar el contador local de un nodo;
+- fusionar otro reloj por máximo componente a componente;
+- construir un reloj fusionado sin mutar los originales;
+- comparar dos relojes como `Equal`, `Before`, `After` o `Concurrent`.
+
+La implementación trata los nodos ausentes como `Counter(0)`. Esta regla evita
+casos especiales en la comparación: un reloj vacío está antes de uno que ya
+observó eventos, y dos relojes con incrementos en nodos distintos son
+concurrentes.
 
 ## Invariantes
 
@@ -125,6 +143,6 @@ replicación eventual, CRDTs, resolución de conflictos y diseños de sistemas.
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar un modelo Rust mínimo de Vector clocks
-con incremento local, fusión por máximo, comparación causal y tratamiento de
-nodos ausentes como cero.
+El siguiente paso natural es escribir ejemplos progresivos, ejercicios y
+soluciones ejecutables para conectar el modelo con escenarios de actualización
+concurrente, mensajes atrasados y fusión de conocimiento.

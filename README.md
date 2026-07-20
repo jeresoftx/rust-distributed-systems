@@ -75,7 +75,7 @@ completo, pertenece a otro repositorio del camino.
 | 03 | Paxos | `src/paxos.rs` | benchmarked |
 | 04 | Elección de líder | `src/leader_election.rs` | benchmarked |
 | 05 | Locks distribuidos | `src/distributed_locks.rs` | benchmarked |
-| 06 | Vector clocks | `src/vector_clock.rs` | draft |
+| 06 | Vector clocks | `src/vector_clock.rs` | tested |
 | 07 | Lamport clocks | `src/lamport_clock.rs` | planned |
 | 08 | CRDTs | `src/crdt.rs` | planned |
 | 09 | Teorema CAP | `src/cap.rs` | planned |

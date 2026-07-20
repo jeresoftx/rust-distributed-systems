@@ -10,6 +10,7 @@ pub mod distributed_locks;
 pub mod leader_election;
 pub mod paxos;
 pub mod raft;
+pub mod vector_clock;
 
 /// Nombre canónico del curso dentro de Jeresoft Academy.
 #[must_use]
