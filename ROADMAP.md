@@ -22,8 +22,9 @@ ejecutables, fuente Mermaid y benchmark manual. Su estado visible es
 `reviewed` ni `published` sin revisión humana.
 
 Raft ya cuenta con especificación inicial, modelo Rust mínimo y tests de
-invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
-ejercicios, benchmark y revisión humana.
+invariantes, capítulo extendido, diagrama Mermaid, ejemplos progresivos,
+ejercicios y soluciones ejecutables. Su estado visible es `tested`: todavía
+faltan benchmark y revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -75,6 +76,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #10: agregar capítulo extendido, ejemplos progresivos y
-ejercicios de Raft. Ese paso debe convertir el modelo probado en material de
-estudio guiado.
+Continuar con el issue #11: agregar benchmarks y cierre de estado de Raft. Ese
+paso debe medir elección, replicación, commit y conflicto de log sin convertir
+el capítulo en `reviewed` ni `published`.

@@ -3,8 +3,8 @@
 > **Estado:** tested.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
-> invariantes. Todavía no tiene ejemplos progresivos, ejercicios, benchmark ni
-> revisión humana.
+> invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
+> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
 
 ## Concepto
 
@@ -30,6 +30,29 @@ Raft responde preguntas operacionales:
 - qué entradas pertenecen al log aceptado;
 - cuándo una entrada pasa de recibida a confirmada;
 - cómo se repara un seguidor con historial atrasado o incompatible.
+
+Si estas preguntas no se responden explícitamente, el sistema puede aceptar dos
+líderes aparentes, confirmar escrituras que una mayoría no conserva o perder la
+capacidad de explicar qué historia deben obedecer los nodos recuperados.
+
+## Diagrama
+
+```mermaid
+sequenceDiagram
+    participant N1 as Nodo 1
+    participant N2 as Nodo 2
+    participant N3 as Nodo 3
+
+    N1->>N1: inicia elección T1
+    N1->>N2: solicita voto T1
+    N2->>N1: concede voto T1
+    Note over N1,N3: Dos de tres nodos forman mayoría
+    N1->>N1: se vuelve líder T1
+    N1->>N1: agrega entrada L1
+    N1->>N2: replica entrada L1
+    N2->>N1: acepta entrada L1
+    N1->>N1: confirma L1 por mayoría
+```
 
 ## Modelo educativo esperado
 
@@ -136,6 +159,46 @@ Raft cambia simplicidad conceptual por coordinación explícita:
 - reparar logs atrasados exige comparar índices y términos;
 - conservar historial ayuda a explicar el sistema, pero crece con los eventos.
 
+## Ejemplos progresivos
+
+### Básico
+
+`examples/soluciones/raft_basic_election.rs` muestra la idea mínima: tres nodos,
+un candidato, un voto adicional y una mayoría suficiente para elegir líder.
+
+La lección no es que cualquier nodo pueda mandar. La lección es que el liderazgo
+en Raft pertenece a un término y necesita votos observables.
+
+### Intermedio
+
+`examples/soluciones/raft_intermediate_commit.rs` muestra una escritura que
+entra por el líder, se replica a un seguidor y queda confirmada al alcanzar
+mayoría.
+
+Antes de la réplica, la entrada existe en el líder, pero no está confirmada. Esa
+diferencia entre "lo vi" y "el clúster lo aceptó" es una de las fronteras más
+importantes del capítulo.
+
+### Avanzado
+
+`examples/soluciones/raft_advanced_log_conflict.rs` prepara un seguidor con un
+log divergente y muestra que el modelo rechaza una replicación cuyo prefijo no
+coincide.
+
+La lección es que Raft no trata el log como una lista cualquiera. Índice y
+término forman evidencia: si no coinciden, el seguidor no puede fingir que la
+historia es compatible.
+
+### Caso real
+
+`examples/soluciones/raft_real_replicated_config.rs` interpreta una entrada del
+log como una configuración de clúster. En cinco nodos, el líder necesita tres
+réplicas, contándose a sí mismo, para confirmar el cambio.
+
+Este caso conecta el modelo con sistemas reales: cambios de configuración,
+operaciones administrativas, catálogos replicados o comandos que deben quedar
+en una historia común.
+
 ## Modos de falla
 
 El capítulo debe cubrir, como mínimo:
@@ -163,14 +226,48 @@ Este capítulo no promete:
 Primero se aprende la estructura. Después se puede hablar de optimización,
 persistencia, snapshots y operación real.
 
+## Ejercicios
+
+### Nivel 1: elección
+
+Crea un clúster de tres nodos. Inicia elección desde `NodeId(2)`, concede un
+voto desde `NodeId(3)` y verifica que el líder sea `NodeId(2)`.
+
+Solución sugerida: `examples/soluciones/raft_basic_election.rs`, cambiando el
+candidato.
+
+### Nivel 2: commit explícito
+
+Elige líder, agrega una entrada y verifica que `committed_command` sigue en
+`None` antes de replicar. Después replica a un seguidor, confirma la entrada y
+verifica el comando confirmado.
+
+Solución sugerida: `examples/soluciones/raft_intermediate_commit.rs`.
+
+### Nivel 3: conflicto de log
+
+Prepara un seguidor con una entrada anterior usando `install_log_for_scenario`.
+Luego intenta replicar una entrada distinta del líder en el mismo índice y
+verifica que el modelo devuelve `RaftError::LogConflict`.
+
+Solución sugerida: `examples/soluciones/raft_advanced_log_conflict.rs`.
+
+### Nivel 4: configuración replicada
+
+Modela una configuración de clúster como comando de log en cinco nodos. Verifica
+que dos réplicas totales no alcanzan mayoría y que tres sí la alcanzan.
+
+Solución sugerida: `examples/soluciones/raft_real_replicated_config.rs`.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
 - `docs/00-convenciones-de-simulacion.md`
 - `docs/01-consenso.md`
+- `diagrams/02-raft.mmd`
 - `docs/superpowers/specs/2026-07-20-raft-specification.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar ejemplos progresivos y ejercicios para que
-el modelo se pueda estudiar desde escenarios pequeños hasta un caso real.
+El siguiente paso natural es agregar benchmark educativo para observar costos de
+elección, replicación, commit y conflicto de log.

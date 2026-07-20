@@ -29,6 +29,22 @@ path = "examples/soluciones/consensus_advanced_conflict.rs"
 name = "consensus_real_config"
 path = "examples/soluciones/consensus_real_config.rs"
 
+[[example]]
+name = "raft_basic_election"
+path = "examples/soluciones/raft_basic_election.rs"
+
+[[example]]
+name = "raft_intermediate_commit"
+path = "examples/soluciones/raft_intermediate_commit.rs"
+
+[[example]]
+name = "raft_advanced_log_conflict"
+path = "examples/soluciones/raft_advanced_log_conflict.rs"
+
+[[example]]
+name = "raft_real_replicated_config"
+path = "examples/soluciones/raft_real_replicated_config.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
