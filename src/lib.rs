@@ -5,6 +5,7 @@
 //! sistema distribuido: nodos, mensajes, tiempo, fallas, replicación, consenso
 //! y consistencia observable.
 
+pub mod cap;
 pub mod consensus;
 pub mod crdt;
 pub mod distributed_locks;
