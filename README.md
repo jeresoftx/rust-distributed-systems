@@ -77,7 +77,7 @@ completo, pertenece a otro repositorio del camino.
 | 05 | Locks distribuidos | `src/distributed_locks.rs` | benchmarked |
 | 06 | Vector clocks | `src/vector_clock.rs` | benchmarked |
 | 07 | Lamport clocks | `src/lamport_clock.rs` | benchmarked |
-| 08 | CRDTs | `src/crdt.rs` | tested |
+| 08 | CRDTs | `src/crdt.rs` | benchmarked |
 | 09 | Teorema CAP | `src/cap.rs` | planned |
 | 10 | Consistent hashing | `src/consistent_hashing.rs` | planned |
 | 11 | Protocolo gossip | `src/gossip.rs` | planned |

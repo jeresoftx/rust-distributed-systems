@@ -58,9 +58,11 @@ visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
 CRDTs ya cuenta con especificación inicial, invariantes documentados, modelo
-Rust mínimo y tests de convergencia para un G-Counter state-based. Su estado
-visible es `tested`: también cuenta con ejemplos progresivos, ejercicios,
-soluciones ejecutables y diagrama Mermaid. Todavía falta benchmark educativo.
+Rust mínimo, tests de convergencia para un G-Counter state-based, ejemplos
+progresivos, ejercicios, soluciones ejecutables y diagrama Mermaid. También
+cuenta con benchmark educativo manual. Su estado visible es `benchmarked`:
+tiene medición educativa, pero todavía no se marca como `reviewed` ni
+`published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -87,7 +89,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 05 | Locks distribuidos | benchmarked |
 | 06 | Vector clocks | benchmarked |
 | 07 | Lamport clocks | benchmarked |
-| 08 | CRDTs | tested |
+| 08 | CRDTs | benchmarked |
 | 09 | Teorema CAP | planned |
 | 10 | Consistent hashing | planned |
 | 11 | Protocolo gossip | planned |
@@ -112,7 +114,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #35: agregar benchmark educativo y cierre de estado de
-CRDTs. Ese paso debe medir incremento local, fusión por máximo, comparación
-parcial y convergencia eventual sin marcar el capítulo como `reviewed` ni
-`published`.
+Continuar con el issue #36: definir especificación e invariantes del teorema
+CAP. Ese paso debe explicar consistencia, disponibilidad, tolerancia a
+particiones y los límites de simplificar CAP como una elección de dos letras.
