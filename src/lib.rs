@@ -6,6 +6,7 @@
 //! y consistencia observable.
 
 pub mod consensus;
+pub mod leader_election;
 pub mod paxos;
 pub mod raft;
 

@@ -33,9 +33,9 @@ ejercicios, soluciones ejecutables y benchmark manual. Su estado visible es
 `benchmarked`: tiene medición educativa, pero todavía no se marca como
 `reviewed` ni `published` sin revisión humana.
 
-Elección de líder ya cuenta con especificación inicial e invariantes
-documentados. Su estado visible es `draft`: todavía falta modelo Rust, tests,
-ejemplos, ejercicios y benchmark.
+Elección de líder ya cuenta con especificación inicial, modelo Rust mínimo y
+tests de invariantes. Su estado visible es `tested`: todavía faltan ejemplos,
+ejercicios, benchmark y revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -58,7 +58,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 01 | Consenso | benchmarked |
 | 02 | Raft | benchmarked |
 | 03 | Paxos | benchmarked |
-| 04 | Elección de líder | draft |
+| 04 | Elección de líder | tested |
 | 05 | Locks distribuidos | planned |
 | 06 | Vector clocks | planned |
 | 07 | Lamport clocks | planned |
@@ -87,6 +87,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #17: implementar modelo Rust mínimo de Elección de
-líder. Ese paso debe mantener una elección determinista por mayoría antes de
-avanzar a ejemplos y benchmarks.
+Continuar con el issue #18: escribir capítulo extendido, ejemplos progresivos y
+ejercicios de Elección de líder. Ese paso debe convertir el modelo probado en
+material de estudio guiado.
