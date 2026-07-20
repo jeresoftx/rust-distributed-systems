@@ -5,3 +5,4 @@
 - [Convenciones de simulación](./00-convenciones-de-simulacion.md)
 - [01. Consenso](./01-consenso.md)
 - [02. Raft](./02-raft.md)
+- [03. Paxos](./03-paxos.md)
