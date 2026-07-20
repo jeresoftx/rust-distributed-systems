@@ -1,10 +1,11 @@
 # 04. Elección de líder
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
+> diagrama Mermaid. También cuenta con benchmark educativo manual. Todavía no
+> tiene revisión humana y no está marcado como `published`.
 
 ## Concepto
 
@@ -139,6 +140,34 @@ La elección de líder tiene precio:
 - fallas y recuperaciones agregan ruido operacional;
 - cambios frecuentes de líder pueden frenar el progreso.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/leader_election_bench.rs` y se
+ejecuta con:
+
+```bash
+cargo bench --bench leader_election_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- elección por mayoría;
+- rechazo de doble voto;
+- rechazo de término viejo;
+- voto tras recuperación de nodo.
+
+Este benchmark no intenta modelar un coordinador real ni medir red,
+temporizadores o almacenamiento. Usa `std::time::Instant`,
+`std::hint::black_box` y repeticiones simples para ligar cada operación con una
+invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que el modelo no tiene red real ni relojes físicos;
+- no confundir esta medición educativa con benchmarking estadístico formal.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -249,9 +278,10 @@ Solución sugerida:
 - `docs/02-raft.md`
 - `diagrams/04-eleccion-de-lider.mmd`
 - `docs/superpowers/specs/2026-07-20-leader-election-specification.md`
+- `docs/superpowers/specs/2026-07-20-leader-election-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar un benchmark educativo para medir elección
-por mayoría, rechazo de doble voto, rechazo de término obsoleto y recuperación
-de nodo.
+El siguiente paso natural es revisar Elección de líder con criterio humano antes
+de decidir si se agregan correcciones o si el capítulo puede avanzar hacia
+publicación.
