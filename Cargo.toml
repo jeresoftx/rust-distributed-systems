@@ -157,6 +157,22 @@ path = "examples/soluciones/cap_advanced_available_divergence.rs"
 name = "cap_real_reservation_checkout"
 path = "examples/soluciones/cap_real_reservation_checkout.rs"
 
+[[example]]
+name = "consistent_hashing_basic_owner"
+path = "examples/soluciones/consistent_hashing_basic_owner.rs"
+
+[[example]]
+name = "consistent_hashing_intermediate_add_node"
+path = "examples/soluciones/consistent_hashing_intermediate_add_node.rs"
+
+[[example]]
+name = "consistent_hashing_advanced_remove_node"
+path = "examples/soluciones/consistent_hashing_advanced_remove_node.rs"
+
+[[example]]
+name = "consistent_hashing_real_cache_shards"
+path = "examples/soluciones/consistent_hashing_real_cache_shards.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"

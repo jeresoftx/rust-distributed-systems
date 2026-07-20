@@ -73,9 +73,9 @@ humana.
 
 Consistent hashing ya cuenta con especificación inicial e invariantes
 documentados, modelo Rust mínimo y tests de asignación por sucesor,
-wrap-around, determinismo y movimiento acotado. Su estado visible es
-`implemented`: todavía falta capítulo extendido, ejemplos, ejercicios,
-soluciones ejecutables, diagrama Mermaid y benchmark educativo.
+wrap-around, determinismo y movimiento acotado. También cuenta con capítulo
+extendido, ejemplos progresivos, ejercicios, soluciones ejecutables y diagrama
+Mermaid. Su estado visible es `tested`: todavía falta benchmark educativo.
 
 ## Progresión del Semestre 4
 
@@ -104,7 +104,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | benchmarked |
 | 09 | Teorema CAP | benchmarked |
-| 10 | Consistent hashing | implemented |
+| 10 | Consistent hashing | tested |
 | 11 | Protocolo gossip | planned |
 | 12 | Transacciones distribuidas | planned |
 
@@ -127,6 +127,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #42: escribir capítulo, ejemplos y ejercicios de
-Consistent hashing. Ese paso debe convertir el modelo Rust en una explicación
-progresiva con soluciones ejecutables y diagrama Mermaid.
+Continuar con el issue #43: agregar benchmark educativo y cierre de estado de
+Consistent hashing. Ese paso debe medir asignación de claves, inserción de
+nodos, retiro de nodos y comparación de movimientos sin marcar el capítulo como
+`reviewed` ni `published`.
