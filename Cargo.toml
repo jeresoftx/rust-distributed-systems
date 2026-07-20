@@ -12,3 +12,19 @@ name = "rust_distributed_systems"
 path = "src/lib.rs"
 
 [dependencies]
+
+[[example]]
+name = "consensus_basic_majority"
+path = "examples/soluciones/consensus_basic_majority.rs"
+
+[[example]]
+name = "consensus_intermediate_failure"
+path = "examples/soluciones/consensus_intermediate_failure.rs"
+
+[[example]]
+name = "consensus_advanced_conflict"
+path = "examples/soluciones/consensus_advanced_conflict.rs"
+
+[[example]]
+name = "consensus_real_config"
+path = "examples/soluciones/consensus_real_config.rs"
