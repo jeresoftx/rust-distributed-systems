@@ -49,3 +49,8 @@ path = "examples/soluciones/raft_real_replicated_config.rs"
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
 harness = false
+
+[[bench]]
+name = "raft_bench"
+path = "benches/raft_bench.rs"
+harness = false
