@@ -8,3 +8,4 @@
 - [03. Paxos](./03-paxos.md)
 - [04. Elección de líder](./04-eleccion-de-lider.md)
 - [05. Locks distribuidos](./05-locks-distribuidos.md)
+- [06. Vector clocks](./06-vector-clocks.md)

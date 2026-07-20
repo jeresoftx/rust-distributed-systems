@@ -45,6 +45,10 @@ y diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
 visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
+Vector clocks ya cuenta con especificación inicial e invariantes documentados.
+Su estado visible es `draft`: todavía falta modelo Rust, tests, ejemplos,
+ejercicios y benchmark.
+
 ## Progresión del Semestre 4
 
 El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
@@ -68,7 +72,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 03 | Paxos | benchmarked |
 | 04 | Elección de líder | benchmarked |
 | 05 | Locks distribuidos | benchmarked |
-| 06 | Vector clocks | planned |
+| 06 | Vector clocks | draft |
 | 07 | Lamport clocks | planned |
 | 08 | CRDTs | planned |
 | 09 | Teorema CAP | planned |
@@ -95,6 +99,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #24: definir la especificación inicial de Vector clocks.
-Ese paso debe explicar causalidad, concurrencia observable y comparación de
-versiones antes de implementar código.
+Continuar con el issue #25: implementar modelo Rust mínimo de Vector clocks.
+Ese paso debe representar incremento local, fusión por máximo, comparación
+causal y nodos ausentes como cero.
