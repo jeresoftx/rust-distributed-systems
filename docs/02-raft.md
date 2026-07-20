@@ -1,10 +1,11 @@
 # 02. Raft
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark ni revisión humana.
+> diagrama Mermaid. También cuenta con benchmark educativo manual. Todavía no
+> tiene revisión humana y no está marcado como `published`.
 
 ## Concepto
 
@@ -159,6 +160,33 @@ Raft cambia simplicidad conceptual por coordinación explícita:
 - reparar logs atrasados exige comparar índices y términos;
 - conservar historial ayuda a explicar el sistema, pero crece con los eventos.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/raft_bench.rs` y se ejecuta con:
+
+```bash
+cargo bench --bench raft_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- elección por mayoría;
+- replicación y commit de una entrada;
+- rechazo de voto duplicado en el mismo término;
+- detección de conflicto de log.
+
+Este benchmark no intenta demostrar rendimiento de una implementación real de
+Raft. Usa `std::time::Instant`, `std::hint::black_box` y repeticiones simples
+para conectar las operaciones del modelo con una medición local. El aprendizaje
+está en identificar qué invariante protege cada operación.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, disco ni timeouts físicos;
+- no usar estos números como referencia de producción.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -269,5 +297,5 @@ Solución sugerida: `examples/soluciones/raft_real_replicated_config.rs`.
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar benchmark educativo para observar costos de
-elección, replicación, commit y conflicto de log.
+El siguiente paso natural es revisar Raft con criterio humano antes de decidir
+si se agregan correcciones o si el capítulo puede avanzar hacia publicación.
