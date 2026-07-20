@@ -4,3 +4,4 @@
 - [Glosario base](./00-glosario.md)
 - [Convenciones de simulación](./00-convenciones-de-simulacion.md)
 - [01. Consenso](./01-consenso.md)
+- [02. Raft](./02-raft.md)
