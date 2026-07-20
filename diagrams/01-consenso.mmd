@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant N1 as Nodo 1
+    participant N2 as Nodo 2
+    participant N3 as Nodo 3
+
+    N1->>N1: crea propuesta P10 = valor A
+    N1->>N1: acepta P10
+    N1->>N2: solicita aceptación
+    N2->>N2: acepta P10
+    Note over N1,N3: Dos de tres nodos forman quórum
+    N1->>N1: P10 queda decidida

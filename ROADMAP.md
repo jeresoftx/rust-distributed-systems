@@ -16,10 +16,10 @@ asignado a `jeresoftx`, asociado al milestone correspondiente y etiquetado para
 mantener la regla del repositorio: un issue, un commit y un PR.
 
 Consenso ya cuenta con especificación, modelo Rust mínimo, tests de integración,
-capítulo inicial, diagrama Mermaid, ejemplos progresivos y ejercicios. Su estado
-visible es `draft`: todavía falta agregar benchmark y cierre de estado antes de
-considerarlo `benchmarked`, y no se marca como `reviewed` ni `published` sin
-revisión humana.
+capítulo inicial, diagrama Mermaid, ejemplos progresivos, ejercicios, soluciones
+ejecutables, fuente Mermaid y benchmark manual. Su estado visible es
+`benchmarked`: tiene medición educativa, pero todavía no se marca como
+`reviewed` ni `published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -39,7 +39,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 | # | Capítulo | Estado |
 |---|----------|--------|
-| 01 | Consenso | draft |
+| 01 | Consenso | benchmarked |
 | 02 | Raft | planned |
 | 03 | Paxos | planned |
 | 04 | Elección de líder | planned |
@@ -71,6 +71,5 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #7: agregar benchmarks y cierre de estado de Consenso.
-Ese paso debe registrar medición educativa, actualizar estados y mantener la
-frontera de revisión humana antes de publicar.
+Continuar con el issue #8: definir especificación e invariantes de Raft. Ese
+paso abre el segundo capítulo sin modificar el estado `benchmarked` de Consenso.

@@ -70,7 +70,7 @@ completo, pertenece a otro repositorio del camino.
 
 | # | Capítulo | Módulo | Estado |
 |---|----------|--------|--------|
-| 01 | Consenso | `src/consensus.rs` | draft |
+| 01 | Consenso | `src/consensus.rs` | benchmarked |
 | 02 | Raft | `src/raft.rs` | planned |
 | 03 | Paxos | `src/paxos.rs` | planned |
 | 04 | Elección de líder | `src/leader_election.rs` | planned |
