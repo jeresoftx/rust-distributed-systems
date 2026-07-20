@@ -41,8 +41,9 @@ como `reviewed` ni `published` sin revisión humana.
 
 Locks distribuidos ya cuenta con especificación inicial, modelo Rust mínimo y
 tests de invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables
-y diagrama Mermaid. Su estado visible es `tested`: todavía falta benchmark y
-revisión humana.
+y diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
+visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
+como `reviewed` ni `published` sin revisión humana.
 
 ## Progresión del Semestre 4
 
@@ -66,7 +67,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 02 | Raft | benchmarked |
 | 03 | Paxos | benchmarked |
 | 04 | Elección de líder | benchmarked |
-| 05 | Locks distribuidos | tested |
+| 05 | Locks distribuidos | benchmarked |
 | 06 | Vector clocks | planned |
 | 07 | Lamport clocks | planned |
 | 08 | CRDTs | planned |
@@ -94,6 +95,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #23: agregar benchmark educativo y cierre de capítulo de
-Locks distribuidos. Ese paso debe medir las operaciones principales sin marcar
-el capítulo como `reviewed` ni `published`.
+Continuar con el issue #24: definir la especificación inicial de Vector clocks.
+Ese paso debe explicar causalidad, concurrencia observable y comparación de
+versiones antes de implementar código.
