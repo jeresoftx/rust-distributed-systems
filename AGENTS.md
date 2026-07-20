@@ -56,14 +56,16 @@ issues en GitHub. Ese tablero es el checklist operativo del repositorio.
 Cada paso del plan se trabaja con trazabilidad mínima:
 
 1. Crear o reutilizar un issue específico para el paso.
-2. Crear una rama corta y descriptiva desde `main`.
-3. Hacer exactamente un commit principal para ese paso.
-4. Abrir un pull request hacia `main`.
-5. Asignar el PR a `jeresoftx`.
-6. Asociar el PR al mismo milestone del issue que resuelve.
-7. Agregar labels coherentes al issue y al PR.
-8. Entregar un resumen breve para revisión humana.
-9. Esperar aprobación explícita antes de fusionar el PR.
+2. Asignar el issue a `jeresoftx`, asociarlo a su milestone y agregar labels
+   coherentes.
+3. Crear una rama corta y descriptiva desde `main`.
+4. Hacer exactamente un commit principal para ese paso.
+5. Abrir un pull request hacia `main`.
+6. Asignar el PR a `jeresoftx`.
+7. Asociar el PR al mismo milestone del issue que resuelve.
+8. Agregar labels coherentes al issue y al PR.
+9. Entregar un resumen breve para revisión humana.
+10. Esperar aprobación explícita antes de fusionar el PR.
 
 Reglas operativas:
 
