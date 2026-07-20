@@ -59,8 +59,8 @@ como `reviewed` ni `published` sin revisión humana.
 
 CRDTs ya cuenta con especificación inicial, invariantes documentados, modelo
 Rust mínimo y tests de convergencia para un G-Counter state-based. Su estado
-visible es `tested`: todavía faltan ejemplos progresivos, ejercicios,
-soluciones ejecutables y benchmark.
+visible es `tested`: también cuenta con ejemplos progresivos, ejercicios,
+soluciones ejecutables y diagrama Mermaid. Todavía falta benchmark educativo.
 
 ## Progresión del Semestre 4
 
@@ -112,6 +112,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #34: escribir capítulo, ejemplos progresivos, ejercicios
-y soluciones de CRDTs. Ese paso debe convertir el modelo G-Counter en una
-experiencia educativa completa antes del benchmark.
+Continuar con el issue #35: agregar benchmark educativo y cierre de estado de
+CRDTs. Ese paso debe medir incremento local, fusión por máximo, comparación
+parcial y convergencia eventual sin marcar el capítulo como `reviewed` ni
+`published`.
