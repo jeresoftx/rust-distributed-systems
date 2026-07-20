@@ -64,6 +64,10 @@ cuenta con benchmark educativo manual. Su estado visible es `benchmarked`:
 tiene medición educativa, pero todavía no se marca como `reviewed` ni
 `published` sin revisión humana.
 
+Teorema CAP ya cuenta con especificación inicial e invariantes documentados. Su
+estado visible es `draft`: todavía falta modelo Rust, tests, ejemplos,
+ejercicios, soluciones ejecutables y benchmark.
+
 ## Progresión del Semestre 4
 
 El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
@@ -90,7 +94,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 06 | Vector clocks | benchmarked |
 | 07 | Lamport clocks | benchmarked |
 | 08 | CRDTs | benchmarked |
-| 09 | Teorema CAP | planned |
+| 09 | Teorema CAP | draft |
 | 10 | Consistent hashing | planned |
 | 11 | Protocolo gossip | planned |
 | 12 | Transacciones distribuidas | planned |
@@ -114,6 +118,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #36: definir especificación e invariantes del teorema
-CAP. Ese paso debe explicar consistencia, disponibilidad, tolerancia a
-particiones y los límites de simplificar CAP como una elección de dos letras.
+Continuar con el issue #37: implementar modelo Rust mínimo de Teorema CAP. Ese
+paso debe evaluar decisiones bajo partición para consistencia fuerte,
+disponibilidad y aceptación eventual con riesgo de divergencia.
