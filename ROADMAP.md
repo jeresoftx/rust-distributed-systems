@@ -39,6 +39,10 @@ y diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
 visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
+Locks distribuidos ya cuenta con especificación inicial e invariantes
+documentados. Su estado visible es `draft`: todavía falta modelo Rust, tests,
+ejemplos, ejercicios y benchmark.
+
 ## Progresión del Semestre 4
 
 El curso abre el Semestre 4 con mecanismos distribuidos antes de pasar a
@@ -61,7 +65,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 02 | Raft | benchmarked |
 | 03 | Paxos | benchmarked |
 | 04 | Elección de líder | benchmarked |
-| 05 | Locks distribuidos | planned |
+| 05 | Locks distribuidos | draft |
 | 06 | Vector clocks | planned |
 | 07 | Lamport clocks | planned |
 | 08 | CRDTs | planned |
@@ -89,6 +93,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #20: definir la especificación inicial de Locks
-distribuidos. Ese paso debe explicar exclusión mutua distribuida, leases,
-fencing tokens, fallas y límites antes de implementar código.
+Continuar con el issue #21: implementar modelo Rust mínimo de Locks
+distribuidos. Ese paso debe representar leases lógicos, fencing tokens,
+propiedad por recurso, renovación, liberación y expiración explícita.

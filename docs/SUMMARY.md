@@ -7,3 +7,4 @@
 - [02. Raft](./02-raft.md)
 - [03. Paxos](./03-paxos.md)
 - [04. Elección de líder](./04-eleccion-de-lider.md)
+- [05. Locks distribuidos](./05-locks-distribuidos.md)
