@@ -1,11 +1,11 @@
 # 10. Consistent hashing
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo, tests de
 > invariantes, ejemplos progresivos, ejercicios, soluciones ejecutables y
-> diagrama Mermaid. Todavía no tiene benchmark, revisión humana ni está marcado
-> como `published`.
+> diagrama Mermaid. También cuenta con benchmark educativo manual. Todavía no
+> tiene revisión humana ni está marcado como `published`.
 
 ## Concepto
 
@@ -159,6 +159,33 @@ Consistent hashing tiene precio:
 - claves calientes siguen siendo calientes aunque el anillo sea correcto;
 - migrar datos reales exige protocolos fuera del anillo.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/consistent_hashing_bench.rs` y se
+ejecuta con:
+
+```bash
+cargo bench --bench consistent_hashing_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- consulta de dueño;
+- agregar nodo;
+- retirar nodo;
+- comparar movimientos entre anillos.
+
+Este benchmark no intenta representar un cluster real. Usa `std::time::Instant`,
+`std::hint::black_box` y repeticiones simples para ligar cada operación con una
+invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, serialización ni almacenamiento;
+- no confundir movimiento acotado con ausencia de migración real.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -265,9 +292,10 @@ Solución sugerida:
 - `docs/09-teorema-cap.md`
 - `docs/11-protocolo-gossip.md` cuando exista
 - `docs/superpowers/specs/2026-07-20-consistent-hashing-specification.md`
+- `docs/superpowers/specs/2026-07-20-consistent-hashing-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es agregar el benchmark educativo de Consistent
-hashing y cerrar el estado del capítulo como `benchmarked`, sin marcarlo como
-`reviewed` ni `published` hasta que exista revisión humana.
+El siguiente paso natural del curso es pasar a Protocolo gossip. Consistent
+hashing queda en estado `benchmarked`, pendiente de revisión humana antes de
+cualquier marca `reviewed` o `published`.
