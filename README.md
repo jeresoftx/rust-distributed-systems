@@ -32,6 +32,40 @@ sistemas de reservas.
 líder, locks distribuidos, vector clocks, Lamport clocks, CRDTs, teorema CAP,
 consistent hashing, protocolo gossip y transacciones distribuidas.
 
+## Alcance del curso
+
+El curso estudia qué cambia cuando un programa deja de vivir en una sola
+máquina y empieza a coordinar múltiples nodos. Su unidad principal no es la
+función, el proceso ni la tabla: es el sistema observado como conjunto de
+nodos, mensajes, relojes parciales y fallas independientes.
+
+Este repositorio sí cubre:
+
+- coordinación entre nodos sin memoria compartida;
+- comunicación con retrasos, pérdidas, duplicados y reordenamiento;
+- tiempo lógico, causalidad y orden parcial de eventos;
+- consenso, elección de líder y replicación como mecanismos educativos;
+- consistencia, disponibilidad y tolerancia a particiones como decisiones con
+  costo;
+- modelos pequeños en Rust para razonar sobre invariantes y modos de falla.
+
+Este repositorio no reemplaza:
+
+- `rust-networking`: aquí no se reexplican TCP, UDP, HTTP, TLS ni DNS;
+- `rust-operating-systems`: aquí no se reexplican procesos, memoria, señales ni
+  filesystem;
+- `rust-concurrency`: aquí no se reexplican mutex, atomics, memory ordering ni
+  deadlocks locales;
+- `rust-database-internals`: aquí no se reexplican B-Tree, WAL, MVCC,
+  recovery ni query optimizer;
+- `rust-system-design`: aquí se construyen mecanismos; allá se componen
+  sistemas completos inspirados en productos reales.
+
+La frontera práctica es esta: si el aprendizaje depende de una decisión tomada
+por varios nodos bajo incertidumbre, pertenece a este curso; si depende de una
+abstracción local, un protocolo de red específico o un diseño de producto
+completo, pertenece a otro repositorio del camino.
+
 ## Capítulos
 
 | # | Capítulo | Módulo | Estado |
