@@ -1,9 +1,10 @@
 # 02. Raft
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos progresivos, ejercicios, benchmark ni
+> revisión humana.
 
 ## Concepto
 
@@ -49,6 +50,39 @@ el mecanismo detrás de red real, hilos ni dependencias externas:
 El objetivo no es imitar todos los detalles de una implementación industrial. El
 objetivo es tener un laboratorio determinista donde se puedan observar términos,
 votos, liderazgo, divergencia de logs, reparación y commit por mayoría.
+
+## Implementación
+
+El módulo `src/raft.rs` implementa un clúster educativo determinista. Su API
+expone una secuencia de pasos observables:
+
+- iniciar elección;
+- solicitar votos;
+- finalizar elección si hay mayoría;
+- agregar entradas desde el líder;
+- replicar entradas hacia seguidores;
+- confirmar entradas al alcanzar mayoría;
+- preparar escenarios de log divergente.
+
+Uso básico:
+
+```rust
+use rust_distributed_systems::raft::{LogIndex, NodeId, RaftCluster};
+
+let mut cluster = RaftCluster::new([NodeId(1), NodeId(2), NodeId(3)]);
+
+let term = cluster.start_election(NodeId(1))?;
+cluster.request_vote(NodeId(2), NodeId(1), term)?;
+cluster.finish_election(NodeId(1))?;
+
+let index = cluster.append_entry(NodeId(1), "set x=1")?;
+cluster.replicate_entry(NodeId(1), NodeId(2), index)?;
+cluster.commit_entry(NodeId(1), index)?;
+
+assert_eq!(index, LogIndex(1));
+assert_eq!(cluster.committed_command(index), Some("set x=1"));
+# Ok::<(), rust_distributed_systems::raft::RaftError>(())
+```
 
 ## Invariantes
 
@@ -138,5 +172,5 @@ persistencia, snapshots y operación real.
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar un modelo Rust mínimo de Raft que
-represente términos, roles, votos y un log replicado determinista.
+El siguiente paso natural es agregar ejemplos progresivos y ejercicios para que
+el modelo se pueda estudiar desde escenarios pequeños hasta un caso real.
