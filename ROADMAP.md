@@ -57,9 +57,10 @@ diagrama Mermaid. También cuenta con benchmark educativo manual. Su estado
 visible es `benchmarked`: tiene medición educativa, pero todavía no se marca
 como `reviewed` ni `published` sin revisión humana.
 
-CRDTs ya cuenta con especificación inicial e invariantes documentados. Su estado
-visible es `draft`: todavía falta modelo Rust, tests, ejemplos, ejercicios y
-benchmark.
+CRDTs ya cuenta con especificación inicial, invariantes documentados, modelo
+Rust mínimo y tests de convergencia para un G-Counter state-based. Su estado
+visible es `tested`: todavía faltan ejemplos progresivos, ejercicios,
+soluciones ejecutables y benchmark.
 
 ## Progresión del Semestre 4
 
@@ -86,7 +87,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 05 | Locks distribuidos | benchmarked |
 | 06 | Vector clocks | benchmarked |
 | 07 | Lamport clocks | benchmarked |
-| 08 | CRDTs | draft |
+| 08 | CRDTs | tested |
 | 09 | Teorema CAP | planned |
 | 10 | Consistent hashing | planned |
 | 11 | Protocolo gossip | planned |
@@ -111,6 +112,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #33: implementar modelo Rust mínimo de CRDTs. Ese paso
-debe representar un G-Counter state-based con incremento local, fusión por
-máximo y convergencia eventual.
+Continuar con el issue #34: escribir capítulo, ejemplos progresivos, ejercicios
+y soluciones de CRDTs. Ese paso debe convertir el modelo G-Counter en una
+experiencia educativa completa antes del benchmark.

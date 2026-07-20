@@ -1,9 +1,10 @@
 # 08. CRDTs
 
-> **Estado:** draft.
+> **Estado:** tested.
 >
-> El capítulo cuenta con especificación inicial e invariantes. Todavía no tiene
-> modelo Rust, tests, ejemplos, ejercicios, benchmark ni revisión humana.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo e
+> invariantes probadas. Todavía no tiene ejemplos progresivos, ejercicios,
+> benchmark ni revisión humana.
 
 ## Concepto
 

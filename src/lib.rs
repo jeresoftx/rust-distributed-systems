@@ -6,6 +6,7 @@
 //! y consistencia observable.
 
 pub mod consensus;
+pub mod crdt;
 pub mod distributed_locks;
 pub mod lamport_clock;
 pub mod leader_election;
