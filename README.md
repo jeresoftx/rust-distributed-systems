@@ -30,6 +30,9 @@ Ningún capítulo está marcado como `reviewed` ni `published`: la revisión hum
 de Joel sigue siendo obligatoria antes de considerar el curso listo para
 publicación o ingestión en `academy-web`.
 
+La verificación candidata de cierre vive en
+`docs/superpowers/specs/2026-07-20-publication-candidate-verification.md`.
+
 ## Lugar en el camino
 
 Este curso vive en el Semestre 4. Recibe ideas de `rust-networking`,
@@ -111,6 +114,7 @@ LICENSE-CC-BY-SA-4.0.md
 docs/
   SUMMARY.md
   00-ruta-de-lectura.md
+  superpowers/specs/2026-07-20-publication-candidate-verification.md
 src/
   lib.rs
 examples/
