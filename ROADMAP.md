@@ -81,9 +81,10 @@ Mermaid. También cuenta con benchmark educativo manual. Su estado visible es
 
 Protocolo gossip ya cuenta con especificación inicial e invariantes
 documentados, modelo Rust mínimo y tests de conocimiento monótono,
-idempotencia, fanout acotado, nodos no disponibles y convergencia eventual. Su
-estado visible es `implemented`: todavía falta capítulo extendido, ejemplos,
-ejercicios, soluciones ejecutables, diagrama Mermaid y benchmark educativo.
+idempotencia, fanout acotado, nodos no disponibles y convergencia eventual.
+También cuenta con capítulo extendido, ejemplos progresivos, ejercicios,
+soluciones ejecutables y diagrama Mermaid. Su estado visible es `tested`:
+todavía falta benchmark educativo.
 
 ## Progresión del Semestre 4
 
@@ -113,7 +114,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 08 | CRDTs | benchmarked |
 | 09 | Teorema CAP | benchmarked |
 | 10 | Consistent hashing | benchmarked |
-| 11 | Protocolo gossip | implemented |
+| 11 | Protocolo gossip | tested |
 | 12 | Transacciones distribuidas | planned |
 
 ## Alineación RFC-0001
@@ -135,6 +136,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #46: escribir capítulo, ejemplos y ejercicios de
-Protocolo gossip. Ese paso debe convertir el modelo Rust en una explicación
-progresiva con soluciones ejecutables y diagrama Mermaid.
+Continuar con el issue #47: agregar benchmark educativo de Protocolo gossip.
+Ese paso debe medir operaciones representativas sin convertir el benchmark en
+una promesa de rendimiento de producción.

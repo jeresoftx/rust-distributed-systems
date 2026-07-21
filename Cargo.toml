@@ -173,6 +173,22 @@ path = "examples/soluciones/consistent_hashing_advanced_remove_node.rs"
 name = "consistent_hashing_real_cache_shards"
 path = "examples/soluciones/consistent_hashing_real_cache_shards.rs"
 
+[[example]]
+name = "gossip_basic_single_round"
+path = "examples/soluciones/gossip_basic_single_round.rs"
+
+[[example]]
+name = "gossip_intermediate_unavailable_node"
+path = "examples/soluciones/gossip_intermediate_unavailable_node.rs"
+
+[[example]]
+name = "gossip_advanced_eventual_convergence"
+path = "examples/soluciones/gossip_advanced_eventual_convergence.rs"
+
+[[example]]
+name = "gossip_real_membership_hint"
+path = "examples/soluciones/gossip_real_membership_hint.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
