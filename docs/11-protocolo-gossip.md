@@ -1,11 +1,11 @@
 # 11. Protocolo gossip
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
 > invariantes. También cuenta con capítulo extendido, ejemplos progresivos,
-> ejercicios, soluciones ejecutables y diagrama Mermaid. Todavía no tiene
-> benchmark educativo, revisión humana ni está marcado como `published`.
+> ejercicios, soluciones ejecutables, diagrama Mermaid y benchmark educativo
+> manual. Todavía no tiene revisión humana ni está marcado como `published`.
 
 ## Concepto
 
@@ -159,6 +159,33 @@ Gossip tiene precio:
 - observar que un hecho llegó no equivale a consenso;
 - depurar sistemas epidémicos exige buenas métricas.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/gossip_bench.rs` y se ejecuta con:
+
+```bash
+cargo bench --bench gossip_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- propagación de una ronda;
+- omitir nodos no disponibles;
+- convergencia eventual;
+- recuperación posterior.
+
+Este benchmark no intenta representar un cluster real. Usa
+`std::time::Instant`, `std::hint::black_box` y repeticiones simples para ligar
+cada operación con una invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, serialización ni selección aleatoria;
+- no confundir propagación rápida en el modelo con garantías de producción;
+- comparar fanout y rondas como relación conceptual, no como tuning final.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -273,9 +300,10 @@ Solución sugerida: `examples/soluciones/gossip_real_membership_hint.rs`.
 - `docs/09-teorema-cap.md`
 - `docs/10-consistent-hashing.md`
 - `docs/superpowers/specs/2026-07-20-gossip-protocol-specification.md`
+- `docs/superpowers/specs/2026-07-20-gossip-protocol-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es cerrar el capítulo con un benchmark educativo que
-compare propagación de una ronda, convergencia eventual, nodos no disponibles y
-recuperación posterior.
+El siguiente paso natural es pasar a Transacciones distribuidas. Gossip enseña
+propagación eventual de conocimiento; transacciones distribuidas obligan a
+estudiar coordinación explícita, atomicidad y fallas parciales.
