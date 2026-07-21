@@ -189,6 +189,22 @@ path = "examples/soluciones/gossip_advanced_eventual_convergence.rs"
 name = "gossip_real_membership_hint"
 path = "examples/soluciones/gossip_real_membership_hint.rs"
 
+[[example]]
+name = "distributed_transactions_basic_2pc_commit"
+path = "examples/soluciones/distributed_transactions_basic_2pc_commit.rs"
+
+[[example]]
+name = "distributed_transactions_intermediate_2pc_abort"
+path = "examples/soluciones/distributed_transactions_intermediate_2pc_abort.rs"
+
+[[example]]
+name = "distributed_transactions_advanced_saga_compensation"
+path = "examples/soluciones/distributed_transactions_advanced_saga_compensation.rs"
+
+[[example]]
+name = "distributed_transactions_real_reservation_checkout"
+path = "examples/soluciones/distributed_transactions_real_reservation_checkout.rs"
+
 [[bench]]
 name = "consensus_bench"
 path = "benches/consensus_bench.rs"
