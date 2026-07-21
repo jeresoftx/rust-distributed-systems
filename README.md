@@ -20,6 +20,16 @@ siempre observan la misma verdad al mismo tiempo.
 - Diagramas Mermaid y recursos visuales.
 - Ejercicios graduados con soluciones para niveles 1 a 3.
 
+## Estado editorial
+
+Los 12 capítulos planeados ya tienen cierre técnico en estado `benchmarked`.
+Eso significa que cuentan con especificación, modelo Rust, pruebas, ejemplos,
+ejercicios, capítulo extendido y benchmark educativo.
+
+Ningún capítulo está marcado como `reviewed` ni `published`: la revisión humana
+de Joel sigue siendo obligatoria antes de considerar el curso listo para
+publicación o ingestión en `academy-web`.
+
 ## Lugar en el camino
 
 Este curso vive en el Semestre 4. Recibe ideas de `rust-networking`,
@@ -86,6 +96,9 @@ completo, pertenece a otro repositorio del camino.
 Estados posibles: `planned`, `draft`, `implemented`, `tested`,
 `benchmarked`, `reviewed`, `published`.
 
+`benchmarked` no significa publicado. Sólo indica que el capítulo tiene medición
+educativa y cierre técnico pendiente de revisión humana.
+
 ## Estructura esperada
 
 ```text
@@ -128,6 +141,12 @@ cargo fmt --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo test --all-targets
 cargo test --doc
+```
+
+Benchmarks educativos:
+
+```bash
+cargo bench
 ```
 
 ## Gobernanza
