@@ -259,3 +259,8 @@ harness = false
 name = "gossip_bench"
 path = "benches/gossip_bench.rs"
 harness = false
+
+[[bench]]
+name = "distributed_transactions_bench"
+path = "benches/distributed_transactions_bench.rs"
+harness = false

@@ -90,8 +90,10 @@ educativo manual. Su estado visible es `benchmarked`: todavía no se marca como
 Transacciones distribuidas ya cuenta con especificación inicial e invariantes
 documentados. También cuenta con modelo Rust mínimo y tests para 2PC educativo,
 sagas e idempotencia por identidad. También cuenta con capítulo extendido,
-ejemplos progresivos, ejercicios, soluciones ejecutables y diagrama Mermaid. Su
-estado visible es `tested`: todavía falta benchmark educativo.
+ejemplos progresivos, ejercicios, soluciones ejecutables y diagrama Mermaid.
+También cuenta con benchmark educativo manual. Su estado visible es
+`benchmarked`: todavía no se marca como `reviewed` ni `published` sin revisión
+humana.
 
 ## Progresión del Semestre 4
 
@@ -122,7 +124,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 09 | Teorema CAP | benchmarked |
 | 10 | Consistent hashing | benchmarked |
 | 11 | Protocolo gossip | benchmarked |
-| 12 | Transacciones distribuidas | tested |
+| 12 | Transacciones distribuidas | benchmarked |
 
 ## Alineación RFC-0001
 
@@ -143,6 +145,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #51: agregar benchmark educativo y cierre de estado de
-Transacciones distribuidas. Ese paso debe medir operaciones representativas sin
-convertir el benchmark en una promesa de rendimiento de producción.
+Continuar con el issue #52: alinear README y ROADMAP con el cierre del curso.
+Ese paso debe preparar el cierre editorial sin marcar capítulos como revisados
+ni publicados antes de revisión humana.

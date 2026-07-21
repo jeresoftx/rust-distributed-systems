@@ -1,11 +1,11 @@
 # 12. Transacciones distribuidas
 
-> **Estado:** tested.
+> **Estado:** benchmarked.
 >
 > El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
 > invariantes. También cuenta con capítulo extendido, ejemplos progresivos,
-> ejercicios, soluciones ejecutables y diagrama Mermaid. Todavía no tiene
-> benchmark educativo, revisión humana ni está marcado como `published`.
+> ejercicios, soluciones ejecutables, diagrama Mermaid y benchmark educativo
+> manual. Todavía no tiene revisión humana ni está marcado como `published`.
 
 ## Concepto
 
@@ -185,6 +185,35 @@ Transacciones distribuidas tienen precio:
 - exactly-once práctico exige disciplina en todos los bordes;
 - el estado incierto debe ser visible para operación humana.
 
+## Benchmark educativo
+
+El benchmark del capítulo vive en `benches/distributed_transactions_bench.rs` y
+se ejecuta con:
+
+```bash
+cargo bench --bench distributed_transactions_bench
+```
+
+La salida imprime una tabla con cuatro mediciones:
+
+- commit 2PC;
+- abort 2PC;
+- reintento idempotente;
+- compensación de saga.
+
+Este benchmark no intenta representar un sistema real de pagos, reservas o
+bases de datos. Usa `std::time::Instant`, `std::hint::black_box` y repeticiones
+simples para ligar cada operación con una invariante del capítulo.
+
+Reglas de lectura:
+
+- ejecutar varias veces antes de comparar;
+- observar tendencias, no números absolutos;
+- recordar que no hay red real, logs durables ni recovery;
+- no confundir idempotencia del modelo con exactly-once absoluto;
+- leer las mediciones como contraste conceptual entre decisión, reintento y
+  compensación.
+
 ## Ejemplos progresivos
 
 ### Básico
@@ -297,8 +326,10 @@ Solución sugerida:
 - `docs/09-teorema-cap.md`
 - `docs/11-protocolo-gossip.md`
 - `docs/superpowers/specs/2026-07-20-distributed-transactions-specification.md`
+- `docs/superpowers/specs/2026-07-20-distributed-transactions-chapter-close.md`
 
 ## Siguiente paso
 
-El siguiente paso natural es cerrar el capítulo con un benchmark educativo que
-compare commit 2PC, abort 2PC, reintento idempotente y compensación de saga.
+El siguiente paso natural es pasar al cierre editorial del curso: alinear
+README, ROADMAP, navegación mdBook y verificación completa sin marcar capítulos
+como `reviewed` ni `published` antes de revisión humana.
