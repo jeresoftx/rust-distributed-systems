@@ -110,6 +110,7 @@ LICENSE-APACHE
 LICENSE-CC-BY-SA-4.0.md
 docs/
   SUMMARY.md
+  00-ruta-de-lectura.md
 src/
   lib.rs
 examples/
