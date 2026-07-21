@@ -81,7 +81,7 @@ completo, pertenece a otro repositorio del camino.
 | 09 | Teorema CAP | `src/cap.rs` | benchmarked |
 | 10 | Consistent hashing | `src/consistent_hashing.rs` | benchmarked |
 | 11 | Protocolo gossip | `src/gossip.rs` | benchmarked |
-| 12 | Transacciones distribuidas | `src/distributed_transactions.rs` | tested |
+| 12 | Transacciones distribuidas | `src/distributed_transactions.rs` | benchmarked |
 
 Estados posibles: `planned`, `draft`, `implemented`, `tested`,
 `benchmarked`, `reviewed`, `published`.
