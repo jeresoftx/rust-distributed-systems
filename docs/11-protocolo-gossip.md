@@ -1,10 +1,10 @@
 # 11. Protocolo gossip
 
-> **Estado:** draft.
+> **Estado:** implemented.
 >
-> El capítulo cuenta con especificación inicial e invariantes documentados.
-> Todavía no tiene modelo Rust, tests, ejemplos, ejercicios, benchmark, revisión
-> humana ni está marcado como `published`.
+> El capítulo cuenta con especificación inicial, modelo Rust mínimo y tests de
+> invariantes. Todavía no tiene ejemplos, ejercicios, benchmark, revisión humana
+> ni está marcado como `published`.
 
 ## Concepto
 
@@ -38,6 +38,13 @@ El modelo educativo debe hacer visibles estas reglas:
   disponibles convergen;
 - el modelo puede reportar cuántos nodos conocen un hecho.
 
+## Implementación
+
+El módulo `src/gossip.rs` implementa un cluster determinista con `GossipNodeId`,
+`GossipFact`, `Fanout`, `GossipCluster`, `GossipContact` y
+`GossipRoundReport`. Las rondas usan un snapshot del conocimiento inicial para
+que los hechos recibidos se retransmitan hasta la siguiente ronda.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
@@ -49,5 +56,5 @@ El modelo educativo debe hacer visibles estas reglas:
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar el modelo Rust mínimo de Protocolo
-gossip y sus tests de invariantes.
+El siguiente paso natural es escribir el capítulo completo con ejemplos
+progresivos, ejercicios, soluciones ejecutables y diagrama Mermaid.
