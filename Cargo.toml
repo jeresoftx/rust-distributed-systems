@@ -238,3 +238,8 @@ harness = false
 name = "consistent_hashing_bench"
 path = "benches/consistent_hashing_bench.rs"
 harness = false
+
+[[bench]]
+name = "gossip_bench"
+path = "benches/gossip_bench.rs"
+harness = false
