@@ -14,3 +14,4 @@
 - [09. Teorema CAP](./09-teorema-cap.md)
 - [10. Consistent hashing](./10-consistent-hashing.md)
 - [11. Protocolo gossip](./11-protocolo-gossip.md)
+- [12. Transacciones distribuidas](./12-transacciones-distribuidas.md)
