@@ -1,10 +1,11 @@
 # 12. Transacciones distribuidas
 
-> **Estado:** draft.
+> **Estado:** implemented.
 >
 > El capítulo cuenta con especificación inicial e invariantes documentados.
-> Todavía no tiene modelo Rust mínimo, tests, ejemplos, ejercicios, benchmark,
-> revisión humana ni está marcado como `published`.
+> También cuenta con modelo Rust mínimo y tests de invariantes. Todavía no
+> tiene ejemplos, ejercicios, benchmark, revisión humana ni está marcado como
+> `published`.
 
 ## Concepto
 
@@ -45,6 +46,17 @@ El modelo educativo debe hacer visibles estas reglas:
 - una compensación queda registrada como acción observable;
 - exactly-once práctico se construye con idempotencia y deduplicación.
 
+## Implementación
+
+El módulo `src/distributed_transactions.rs` implementa un coordinador 2PC
+determinista y un ejecutor de sagas educativas. La API expone
+`TransactionId`, `ParticipantId`, `ParticipantVote`, `TransactionDecision`,
+`TwoPhaseCommit`, `SagaStep`, `Saga`, `SagaOutcome` y eventos observables.
+
+2PC usa una identidad estable para hacer idempotentes los reintentos de una
+transacción ya decidida. Saga aplica pasos en orden y, si uno falla, compensa
+los pasos ya aplicados en orden inverso.
+
 ## Referencias internas
 
 - `docs/00-glosario.md`
@@ -59,6 +71,5 @@ El modelo educativo debe hacer visibles estas reglas:
 
 ## Siguiente paso
 
-El siguiente paso natural es implementar el modelo Rust mínimo con TDD:
-coordinador 2PC educativo, saga determinista, idempotencia por identidad y
-tests de invariantes.
+El siguiente paso natural es escribir el capítulo completo con ejemplos
+progresivos, ejercicios, soluciones ejecutables y diagrama Mermaid.

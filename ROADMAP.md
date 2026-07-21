@@ -88,8 +88,9 @@ educativo manual. Su estado visible es `benchmarked`: todavía no se marca como
 `reviewed` ni `published` sin revisión humana.
 
 Transacciones distribuidas ya cuenta con especificación inicial e invariantes
-documentados. Su estado visible es `draft`: todavía falta modelo Rust mínimo,
-tests, capítulo extendido, ejemplos, ejercicios, soluciones ejecutables,
+documentados. También cuenta con modelo Rust mínimo y tests para 2PC educativo,
+sagas e idempotencia por identidad. Su estado visible es `implemented`:
+todavía falta capítulo extendido, ejemplos, ejercicios, soluciones ejecutables,
 diagrama Mermaid y benchmark educativo.
 
 ## Progresión del Semestre 4
@@ -121,7 +122,7 @@ diseños de sistemas completos. La progresión esperada es:
 | 09 | Teorema CAP | benchmarked |
 | 10 | Consistent hashing | benchmarked |
 | 11 | Protocolo gossip | benchmarked |
-| 12 | Transacciones distribuidas | draft |
+| 12 | Transacciones distribuidas | implemented |
 
 ## Alineación RFC-0001
 
@@ -142,6 +143,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #49: implementar el modelo Rust mínimo de Transacciones
-distribuidas con TDD. Ese paso debe cubrir 2PC educativo, sagas e idempotencia
-sin agregar dependencias externas.
+Continuar con el issue #50: escribir capítulo, ejemplos y ejercicios de
+Transacciones distribuidas. Ese paso debe convertir el modelo Rust en una
+explicación progresiva con soluciones ejecutables y diagrama Mermaid.
