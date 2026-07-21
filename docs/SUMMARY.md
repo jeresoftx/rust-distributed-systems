@@ -13,3 +13,4 @@
 - [08. CRDTs](./08-crdts.md)
 - [09. Teorema CAP](./09-teorema-cap.md)
 - [10. Consistent hashing](./10-consistent-hashing.md)
+- [11. Protocolo gossip](./11-protocolo-gossip.md)
