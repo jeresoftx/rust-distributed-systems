@@ -10,6 +10,7 @@ pub mod consensus;
 pub mod consistent_hashing;
 pub mod crdt;
 pub mod distributed_locks;
+pub mod gossip;
 pub mod lamport_clock;
 pub mod leader_election;
 pub mod paxos;
