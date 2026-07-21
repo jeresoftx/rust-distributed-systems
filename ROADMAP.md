@@ -8,12 +8,18 @@ orienta el avance, pero no convierte el curso en una carrera por terminar.
 
 ## Estado actual
 
-El repositorio acaba de nacer con su estructura inicial, licencias, README,
-AGENTS, crate Rust mínimo y tabla de capítulos planeados.
+El repositorio ya cuenta con los 12 capítulos técnicos del curso en estado
+`benchmarked`. Cada capítulo tiene especificación, modelo Rust mínimo, tests,
+capítulo extendido, ejemplos progresivos, ejercicios con soluciones sugeridas y
+benchmark educativo manual.
 
 El plan de trabajo ya vive en GitHub como milestones e issues. Cada paso queda
 asignado a `jeresoftx`, asociado al milestone correspondiente y etiquetado para
 mantener la regla del repositorio: un issue, un commit y un PR.
+
+El curso está en cierre editorial técnico. No está publicado: ningún capítulo
+está marcado como `reviewed` ni `published`, porque la revisión humana de Joel
+sigue siendo obligatoria según RFC-0001 §20.
 
 Consenso ya cuenta con especificación, modelo Rust mínimo, tests de integración,
 capítulo inicial, diagrama Mermaid, ejemplos progresivos, ejercicios, soluciones
@@ -109,7 +115,7 @@ diseños de sistemas completos. La progresión esperada es:
    en diseños como Kafka, Redis distribuido, sistemas de reservas y servicios
    replicados.
 
-## Capítulos planeados
+## Capítulos
 
 | # | Capítulo | Estado |
 |---|----------|--------|
@@ -145,6 +151,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #52: alinear README y ROADMAP con el cierre del curso.
-Ese paso debe preparar el cierre editorial sin marcar capítulos como revisados
-ni publicados antes de revisión humana.
+Continuar con el issue #53: preparar índice mdBook y navegación del curso para
+ingestión futura hacia `academy-web`, sin asumir todavía un mecanismo de
+publicación no decidido.
