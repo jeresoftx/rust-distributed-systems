@@ -21,6 +21,9 @@ El curso está en cierre editorial técnico. No está publicado: ningún capítu
 está marcado como `reviewed` ni `published`, porque la revisión humana de Joel
 sigue siendo obligatoria según RFC-0001 §20.
 
+La verificación candidata quedó documentada en
+`docs/superpowers/specs/2026-07-20-publication-candidate-verification.md`.
+
 Consenso ya cuenta con especificación, modelo Rust mínimo, tests de integración,
 capítulo inicial, diagrama Mermaid, ejemplos progresivos, ejercicios, soluciones
 ejecutables, fuente Mermaid y benchmark manual. Su estado visible es
@@ -151,6 +154,7 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #54: verificar suite completa y publicación candidata.
-Ese paso debe documentar verificaciones, riesgos pendientes y revisión humana
-necesaria sin marcar capítulos como `reviewed` ni `published`.
+Abrir la revisión humana diferida del curso completo. Si Joel detecta ajustes,
+se deben crear nuevos issues y PRs puntuales. No publicar ni ingerir en
+`academy-web` hasta decidir el mecanismo de contenido del sitio y completar la
+revisión editorial humana.
