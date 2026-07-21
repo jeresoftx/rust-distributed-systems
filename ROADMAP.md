@@ -151,6 +151,6 @@ diseños de sistemas completos. La progresión esperada es:
 
 ## Siguiente paso natural
 
-Continuar con el issue #53: preparar índice mdBook y navegación del curso para
-ingestión futura hacia `academy-web`, sin asumir todavía un mecanismo de
-publicación no decidido.
+Continuar con el issue #54: verificar suite completa y publicación candidata.
+Ese paso debe documentar verificaciones, riesgos pendientes y revisión humana
+necesaria sin marcar capítulos como `reviewed` ni `published`.

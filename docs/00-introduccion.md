@@ -22,3 +22,9 @@ reales.
 Cada capítulo empieza por el problema, declara las invariantes del modelo,
 compara alternativas y termina con código Rust, ejemplos, pruebas, ejercicios,
 soluciones y mediciones cuando aporten aprendizaje.
+
+## Navegación
+
+La ruta recomendada está en `00-ruta-de-lectura.md`. `docs/SUMMARY.md` conserva
+el orden canónico para mdBook y para una ingestión futura hacia `academy-web`,
+sin asumir todavía un mecanismo de publicación.
